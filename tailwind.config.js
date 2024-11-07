@@ -5,9 +5,12 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
       },
       colors: {
         primary: "#2dc552",
+        primaryDark: "#0B3B17",
+        darkBg: "#161618",
       },
       dropShadow: {
         "3xl": "0 35px 35px rgba(0, 0, 0, 0.25)",

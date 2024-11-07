@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    @apply font-inter bg-primary
+    @apply font-inter bg-zinc-50
 }
