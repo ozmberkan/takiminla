@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "~/assets/FullLogo.svg";
 
 const Navbar = () => {
@@ -8,16 +9,19 @@ const Navbar = () => {
         Takımınla
       </span>
       <div className="flex gap-x-4 items-center">
-        <button className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium">
-          Yeni takım
-        </button>
-        <button>
+        <Link
+          to="/auth/register"
+          className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
+        >
+          Kayıt Ol
+        </Link>
+        {/* <button>
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8FaixW6ggFhtcOFPZAo5G2_efWCGW4kbVgb2-Y-qNU51A171TIWcSOktBgCZ6esaece0&usqp=CAU"
             alt=""
             className="w-10 h-10 rounded-full ring-1 ring-primary ring-offset-2"
           />
-        </button>
+        </button> */}
       </div>
     </div>
   );
