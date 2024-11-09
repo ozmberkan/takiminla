@@ -8,12 +8,15 @@ import {
   TbLock,
   TbShoe,
   TbPhone,
+  TbArrowBigLeft,
+  TbArrowLeftSquare,
 } from "react-icons/tb";
 import { MdHeight } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Ball from "~/assets/soccerball.svg";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -219,6 +222,12 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center flex-col gap-5 relative ">
+      <Link
+        to="/"
+        className="absolute top-5 left-5 bg-white text-primary p-2 rounded-full"
+      >
+        <TbArrowBigLeft />
+      </Link>
       <motion.img
         initial={{ rotate: 100, x: -400 }}
         animate={{ rotate: 0, x: -120 }}

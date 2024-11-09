@@ -15,6 +15,12 @@ const Navbar = () => {
         >
           Kayıt Ol
         </Link>
+        <Link
+          to="/auth/login"
+          className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
+        >
+          Giriş Yap
+        </Link>
         {/* <button>
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8FaixW6ggFhtcOFPZAo5G2_efWCGW4kbVgb2-Y-qNU51A171TIWcSOktBgCZ6esaece0&usqp=CAU"
