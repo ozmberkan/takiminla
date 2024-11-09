@@ -3,7 +3,7 @@ import Logo from "~/assets/FullLogo.svg";
 
 const Navbar = () => {
   return (
-    <div className="w-full py-5 flex justify-between items-center container mx-auto">
+    <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto">
       <span className="font-nunito text-4xl font-black text-primary ">
         Takımınla
       </span>

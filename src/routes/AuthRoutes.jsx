@@ -1,10 +1,12 @@
 import AuthLayout from "~/layouts/AuthLayout";
+import Login from "~/pages/Auth/Login";
+import Register from "~/pages/Auth/Register";
 
 export const AuthRoutes = {
   path: "/auth",
   element: <AuthLayout />,
   children: [
-    { path: "login", element: <div>Login</div> },
-    { path: "register", element: <div>Register</div> },
+    { path: "login", element: <Login /> },
+    { path: "register", element: <Register /> },
   ],
 };

@@ -1,11 +1,7 @@
 import React from "react";
 
 const AuthContainer = ({ children }) => {
-  return (
-    <div className="min-h-screen flex justify-center items-center">
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen bg-primary">{children}</div>;
 };
 
 export default AuthContainer;
