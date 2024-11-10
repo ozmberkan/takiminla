@@ -1,30 +1,40 @@
-import { motion } from "framer-motion";
 import React from "react";
+import Typewriter from "typewriter-effect";
+import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Ball from "~/assets/soccerball.svg";
 
 const Home = () => {
   return (
-    <div className="bg-primary h-screen  flex justify-end items-center relative overflow-hidden px-5 ">
-      <motion.img
-        initial={{ rotate: 100, x: -400 }}
-        animate={{ rotate: 0, x: -120 }}
-        transition={{ duration: 0.7 }}
-        src={Ball}
-        className="w-[1000px] absolute -left-48"
-      />
-      <div className=" w-1/2 h-[200px] rounded-2xl  flex-col drop-shadow-2xl flex justify-center items-center gap-5">
-        <h1 className="text-[150px] font-nunito font-bold tracking-tighter leading-tight italic text-white">
-          Takımınla
-        </h1>
-        <p className="w-2/3 text-center text-white">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam est
-          quae, impedit omnis animi quidem voluptatibus hic soluta, ipsum
-          commodi velit earum facilis quibusdam dolor.
-        </p>
-        <button className="bg-white rounded-full text-primary font-semibold px-8 py-1">
-          Başla!
-        </button>
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover flex-grow flex justify-center items-center relative overflow-hidden">
+      <div className="w-full z-10 flex items-start justify-start flex-col">
+        <div className="w-full h-full flex justify-start items-center flex-col gap-12">
+          <Link
+            to="/beta"
+            className="px-6 shadow-2xl hover:bg-green-500 hover:text-white transition-colors duration-200 shadow-green-500 font-black text-sm py-2 rounded-full bg-green-100 border border-green-500 text-green-500 flex items-center gap-x-4"
+          >
+            Erken Erişim <TbCircleArrowRightFilled size={25} />
+          </Link>
+          <span className="text-primary drop-shadow-3xl text-[100px] font-black">
+            <Typewriter
+              options={{
+                strings: ["Takımında eksik mi var?", "Takımını şimdi oluştur!"],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </span>
+
+          <span className="w-1/2 text-center text-base text-zinc-700 font-medium">
+            Takımınızı bir araya getirmek hiç bu kadar kolay olmamıştı. Güçlü
+            bir ekip kurarak oyununuzu bir üst seviyeye taşıyın. Katılmak
+            isteyenlere kapınızı açın, rekabeti hissedin ve yeni zaferlere imza
+            atın. Oyunun tadını çıkarırken ekibinizi desteklemenin ve birlikte
+            kazanmanın keyfini yaşayın!
+          </span>
+          <button className="px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl">
+            Başla!
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default {
         ],
       },
       backgroundImage: {
-        mainBg: "url('/src/assets/bg.png')",
+        mainBg: "url('/src/assets/homePage.svg')",
       },
     },
   },

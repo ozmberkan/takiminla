@@ -1,20 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "~/assets/FullLogo.svg";
+import Logo from "~/assets/Logoo.svg";
 
 const Navbar = () => {
   return (
-    <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto">
-      <span className="font-nunito text-4xl font-black text-primary ">
-        Takımınla
-      </span>
-      <div className="flex gap-x-4 items-center">
-        <Link
+    <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
+      <span className="font-black text-xl  text-primary ">Takımınla</span>
+      {/* <img src={Logo} className="w-64" /> */}
+      <div className="flex gap-x-5 items-center ">
+        <Link className="text-zinc-800 font-medium">Hakkımızda</Link>
+        <Link className="text-zinc-800 font-medium">Hizmetler</Link>
+        <Link className="text-zinc-800 font-medium">İletişim</Link>
+      </div>
+      <div className="flex items-center">
+        {/* <Link
           to="/auth/register"
           className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
         >
           Kayıt Ol
-        </Link>
+        </Link> */}
         <Link
           to="/auth/login"
           className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
