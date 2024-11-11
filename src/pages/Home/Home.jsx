@@ -31,9 +31,12 @@ const Home = () => {
             atın. Oyunun tadını çıkarırken ekibinizi desteklemenin ve birlikte
             kazanmanın keyfini yaşayın!
           </span>
-          <button className="px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl">
+          <Link
+            to="/auth/register"
+            className="px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl"
+          >
             Başla!
-          </button>
+          </Link>
         </div>
       </div>
     </div>

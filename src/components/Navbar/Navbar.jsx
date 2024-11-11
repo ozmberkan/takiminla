@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
-      <div className=" flex gap-x-2 items-center">
+      <div className="w-44  flex gap-x-2 items-center">
         <Link to="/" className="font-black text-xl  text-primary ">
           <span>Takımınla </span>
         </Link>
@@ -13,7 +13,7 @@ const Navbar = () => {
         </span>
       </div>
       {/* <img src={Logo} className="w-64" /> */}
-      <div className="flex gap-x-5 items-center ">
+      <div className="flex gap-x-5   flex-1 justify-center items-center">
         <Link
           to="/about"
           className="text-zinc-800 hover:text-zinc-500 font-medium"
@@ -33,7 +33,7 @@ const Navbar = () => {
           İletişim
         </Link>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center w-44 ">
         {/* <Link
           to="/auth/register"
           className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
@@ -44,7 +44,7 @@ const Navbar = () => {
           to="/auth/login"
           className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
         >
-          Giriş Yap
+          Oturum aç
         </Link>
         {/* <button>
           <img
