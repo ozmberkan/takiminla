@@ -4,12 +4,20 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
-      <span className="font-black text-xl  text-primary ">Takımınla</span>
+      <Link to="/" className="font-black text-xl  text-primary ">
+        Takımınla
+      </Link>
       {/* <img src={Logo} className="w-64" /> */}
       <div className="flex gap-x-5 items-center ">
-        <Link className="text-zinc-800 font-medium">Hakkımızda</Link>
-        <Link className="text-zinc-800 font-medium">Hizmetler</Link>
-        <Link className="text-zinc-800 font-medium">İletişim</Link>
+        <Link to="/about" className="text-zinc-800 font-medium">
+          Hakkımızda
+        </Link>
+        <Link to="/services" className="text-zinc-800 font-medium">
+          Hizmetler
+        </Link>
+        <Link to="/contact" className="text-zinc-800 font-medium">
+          İletişim
+        </Link>
       </div>
       <div className="flex items-center">
         {/* <Link
