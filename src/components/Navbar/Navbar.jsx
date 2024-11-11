@@ -9,13 +9,22 @@ const Navbar = () => {
       </Link>
       {/* <img src={Logo} className="w-64" /> */}
       <div className="flex gap-x-5 items-center ">
-        <Link to="/about" className="text-zinc-800 font-medium">
+        <Link
+          to="/about"
+          className="text-zinc-800 hover:text-zinc-500 font-medium"
+        >
           Hakkımızda
         </Link>
-        <Link to="/services" className="text-zinc-800 font-medium">
+        <Link
+          to="/services"
+          className="text-zinc-800 hover:text-zinc-500 font-medium"
+        >
           Hizmetler
         </Link>
-        <Link to="/contact" className="text-zinc-800 font-medium">
+        <Link
+          to="/contact"
+          className="text-zinc-800 hover:text-zinc-500 font-medium"
+        >
           İletişim
         </Link>
       </div>

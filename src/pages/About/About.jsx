@@ -31,9 +31,9 @@ const About = () => {
           {" "}
           <Link
             to="/services"
-            className="bg-primary text-sm text-white rounded-full px-4 py-2"
+            className="bg-primary text-sm text-white rounded-md px-4 py-2"
           >
-            Hizmetlerimize Ulaş
+            Hizmetlerimiz
           </Link>
         </div>
       </div>

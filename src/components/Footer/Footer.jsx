@@ -29,13 +29,13 @@ const Footer = () => {
         </div>
 
         <div className=" p-7 flex flex-col gap-10">
-          <h1 className="text-xl font-medium">Kurumsal</h1>
+          <h1 className="text-base font-medium">Kurumsal</h1>
           <div className="flex flex-col gap-3">
             {footerLinkOne.map((link) => (
               <Link
                 key={link.id}
-                href={link.href}
-                className="text-zinc-700 hover:text-zinc-600"
+                to={link.href}
+                className="text-zinc-700 text-sm hover:text-zinc-600"
               >
                 {link.text}
               </Link>
@@ -43,13 +43,13 @@ const Footer = () => {
           </div>
         </div>
         <div className=" p-7 flex flex-col gap-10">
-          <h1 className="text-xl font-medium">Gizlilik ve Kullanım</h1>
+          <h1 className="text-base font-medium">Gizlilik ve Kullanım</h1>
           <div className="flex flex-col gap-3">
             {footerLinkTwo.map((link) => (
               <Link
                 key={link.id}
-                href={link.href}
-                className="text-zinc-700 hover:text-zinc-600"
+                to={link.href}
+                className="text-zinc-700 text-sm hover:text-zinc-600"
               >
                 {link.text}
               </Link>
@@ -57,16 +57,18 @@ const Footer = () => {
           </div>
         </div>
         <div className=" p-7 flex flex-col gap-10">
-          <h1 className="text-xl font-medium">Adres</h1>
+          <h1 className="text-base font-medium">Adres</h1>
           <div className="flex flex-col gap-3">
-            <span className="text-zinc-700">{footerAddress.address}</span>
+            <span className="text-zinc-700 text-sm">
+              {footerAddress.address}
+            </span>
             <Link
               href={`tel:${footerAddress.phone}`}
-              className="text-zinc-700 hover:text-zinc-600"
+              className="text-zinc-700 hover:text-zinc-600 text-sm"
             >
               {footerAddress.phone}
             </Link>
-            <button className="px-4 py-2 rounded-md bg-primary text-white mt-3 hover:bg-primaryDark">
+            <button className=" py-1 rounded-md bg-primary text-white mt-3 hover:bg-primaryDark">
               {footerAddress.buttonLabel}
             </button>
           </div>

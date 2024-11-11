@@ -9,10 +9,10 @@ export const socialMedia = [
 ];
 
 export const footerLinkOne = [
-  { id: 1, text: "Hakkımızda", href: "#" },
-  { id: 2, text: "İletişim", href: "#" },
-  { id: 3, text: "Erken Erişim", href: "#" },
-  { id: 4, text: "Hizmetler", href: "#" },
+  { id: 1, text: "Hakkımızda", href: "/about" },
+  { id: 2, text: "İletişim", href: "/contact" },
+  { id: 3, text: "Erken Erişim", href: "/beta" },
+  { id: 4, text: "Hizmetler", href: "/services" },
 ];
 
 export const footerLinkTwo = [

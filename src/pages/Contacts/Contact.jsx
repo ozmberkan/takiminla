@@ -16,18 +16,18 @@ const Contact = () => {
               className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <input
-              type="text"
-              placeholder="İsim giriniz.."
+              type="email"
+              placeholder="E-Mail giriniz.."
               className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <input
               type="text"
-              placeholder="İsim giriniz.."
+              placeholder="Konu Başlığı giriniz.."
               className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <textarea
               type="text"
-              placeholder="İsim giriniz.."
+              placeholder="İçerik giriniz.."
               className="px-4 py-2 min-h-44 max-h-44 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <button className="px-4 py-2 rounded-md bg-primary text-white">

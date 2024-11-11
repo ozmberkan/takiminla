@@ -3,6 +3,7 @@ import Home from "~/pages/Home/Home";
 import About from "~/pages/About/About";
 import Services from "~/pages/Services/Services";
 import Contact from "~/pages/Contacts/Contact";
+import Beta from "~/pages/Beta/Beta";
 
 export const HomeRoutes = {
   path: "/",
@@ -12,5 +13,6 @@ export const HomeRoutes = {
     { path: "/about", element: <About /> },
     { path: "/services", element: <Services /> },
     { path: "/contact", element: <Contact /> },
+    { path: "/beta", element: <Beta /> },
   ],
 };
