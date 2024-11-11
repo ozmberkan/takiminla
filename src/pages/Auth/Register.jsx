@@ -9,13 +9,11 @@ import {
   TbShoe,
   TbPhone,
   TbArrowBigLeft,
-  TbArrowLeftSquare,
 } from "react-icons/tb";
 import { MdHeight } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
 import { FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Ball from "~/assets/soccerball.svg";
 import { Link } from "react-router-dom";
 
 const Register = () => {

@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover flex-grow flex justify-center items-center relative overflow-hidden">
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-center relative overflow-hidden">
       <div className="w-full z-10 flex items-start justify-start flex-col">
         <div className="w-full h-full flex justify-start items-center flex-col gap-12">
           <Link
             to="/beta"
-            className="px-6 shadow-2xl hover:bg-green-500 hover:text-white transition-colors duration-200 shadow-green-500 font-black text-sm py-2 rounded-full bg-green-100 border border-green-500 text-green-500 flex items-center gap-x-4"
+            className="px-4 shadow-2xl hover:bg-green-500 hover:text-white transition-colors duration-200 shadow-green-500 font-black text-sm py-2 rounded-full bg-green-100 border-2 border-green-500 text-green-500 flex items-center gap-x-2"
           >
             Erken Erişim <TbCircleArrowRightFilled size={25} />
           </Link>
