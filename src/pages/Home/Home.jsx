@@ -10,7 +10,7 @@ const Home = () => {
         <div className="w-full h-full flex justify-start items-center flex-col gap-12">
           <Link
             to="/beta"
-            className="px-4 shadow-2xl hover:bg-green-500 hover:text-white transition-colors duration-200 shadow-green-500 font-black text-sm py-2 rounded-full bg-green-100 border-2 border-green-500 text-green-500 flex items-center gap-x-2"
+            className="px-4 shadow-2xl hover:bg-primary hover:text-white transition-colors duration-200 shadow-primary font-black text-sm py-2 rounded-full bg-primary/10 border-2 border-primary text-primary flex items-center gap-x-2"
           >
             Erken Erişim <TbCircleArrowRightFilled size={25} />
           </Link>

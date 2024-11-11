@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
-      <Link to="/" className="font-black text-xl  text-primary ">
-        Takımınla
-      </Link>
+      <div className=" flex gap-x-2 items-center">
+        <Link to="/" className="font-black text-xl  text-primary ">
+          <span>Takımınla </span>
+        </Link>
+        <span className="text-xs uppercase font-bold px-2 py-1 rounded-full bg-primary/10 border border-primary text-primary">
+          beta
+        </span>
+      </div>
       {/* <img src={Logo} className="w-64" /> */}
       <div className="flex gap-x-5 items-center ">
         <Link
