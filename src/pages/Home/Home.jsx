@@ -19,9 +19,12 @@ const Home = () => {
               Erken Erişim <TbCircleArrowRightFilled size={25} />
             </Link>
           )}
-          <span className="text-primary drop-shadow-3xl text-[100px] font-black tracking-tighter leading-tight">
+          <span className="text-primary drop-shadow-3xl text-[100px] font-black tracking-tighter leading-tight ">
             {user ? (
-              `Hoş geldin ${user.displayName ? user.displayName : "Kullanıcı"}`
+              <div>
+                Hoş geldin <br />
+                {user.displayName ? <div>{user.displayName}</div> : "Kullanıcı"}
+              </div>
             ) : (
               <Typewriter
                 options={{
