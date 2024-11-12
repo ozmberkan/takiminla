@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { PiCityLight } from "react-icons/pi";
 import {
   TbCurrentLocation,
@@ -13,12 +14,120 @@ import {
   TbUserCheck,
   TbUserScan,
 } from "react-icons/tb";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Avatar from "~/assets/avatar.jpg";
+import { FiSave } from "react-icons/fi";
+import { getUserByID } from "~/redux/slices/userSlice";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "~/firebase/firebase";
+import toast from "react-hot-toast";
 
 const MyAccount = () => {
   const { user } = useSelector((store) => store.user);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserByID(user.uid));
+  }, []);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      displayName: user.displayName || "Kullanıcı",
+      phoneNumber: user.phoneNumber || "+90 *** *** ** **",
+      email: user.email,
+      age: user.age || "Yaş Belirlenmemiş",
+      foot: user.foot || "Ayak Belirlenmemiş",
+      position: user.position || "Mevkii Belirlenmemiş",
+      city: user.city || "Şehir Belirlenmemiş",
+    },
+  });
+
+  const handleEdit = async (data) => {
+    try {
+      const userRef = doc(db, "users", user.uid);
+
+      await updateDoc(userRef, {
+        displayName: data.displayName,
+        phoneNumber: data.phoneNumber,
+        age: data.age,
+        foot: data.foot,
+        position: data.position,
+        city: data.city,
+      });
+
+      toast.success("Profil bilgileriniz başarıyla güncellendi.");
+      setIsEditMode(false);
+
+      dispatch(getUserByID(user.uid));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const userInfo = [
+    {
+      label: "İsim Soyisim",
+      value: user.displayName || "Kullanıcı",
+      icon: <TbUser size={16} />,
+      name: "displayName",
+      type: "text",
+    },
+    {
+      label: "Telefon Numarası",
+      value: user.phoneNumber || "+90 *** *** ** **",
+      icon: <TbPhoneCall size={16} />,
+      name: "phoneNumber",
+      type: "text",
+    },
+    {
+      label: "E-posta",
+      value: user.email,
+      icon: <TbMail size={16} />,
+      name: "email",
+      type: "text",
+      disabled: true,
+    },
+    {
+      label: "Yaş",
+      value: user.age || "Yaş Belirlenmemiş",
+      icon: <TbUserScan size={16} />,
+      name: "age",
+      type: "text",
+    },
+    {
+      label: "Ayak Tercihi",
+      value: user.foot || "Ayak Belirlenmemiş",
+      icon: <TbShoe size={16} />,
+      name: "foot",
+      type: "select",
+      options: ["Sağ", "Sol", "Hepsi"],
+    },
+    {
+      label: "Mevkii",
+      value: user.position || "Mevkii Belirlenmemiş",
+      icon: <TbCurrentLocation size={16} />,
+      name: "position",
+      type: "select",
+      options: [
+        "Forvet",
+        "Orta Saha",
+        "Defans",
+        "Kaleci",
+        "Sol Kanat",
+        "Sağ Kanat",
+      ],
+    },
+    {
+      label: "Şehir",
+      value: user.city || "Şehir Belirlenmemiş",
+      icon: <PiCityLight size={16} />,
+      name: "city",
+      type: "select",
+      options: ["İstanbul", "İzmir", "Ankara", "Antalya", "Bursa", "Tekirdağ"],
+    },
+  ];
 
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
@@ -38,113 +147,69 @@ const MyAccount = () => {
           </div>
           <div className="flex flex-col gap-x-1">
             <h1 className="text-xl font-bold text-primary">
-              {user.displayName ? user.displayName : "Kullanıcı"}
+              {user.displayName || "Kullanıcı"}
             </h1>
             <p className="text-sm text-gray-500">{user.email}</p>
           </div>
         </div>
-        <div className="w-full flex justify-end items-center">
-          <button className="bg-primary/10 text-primary font-medium px-2 py-0.5 rounded-md border border-primary flex items-center gap-x-1 text-sm">
-            <TbEdit /> Düzenle
-          </button>
-        </div>
-        <div className="w-full mt-1 grid grid-cols-3 grid-rows-2 gap-8">
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">İsim Soyisim</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbUser size={16} />
-              </span>
-              <input
-                defaultValue={user.displayName ? user.displayName : "Kullanıcı"}
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
+        <form onSubmit={handleSubmit(handleEdit)}>
+          <div className="w-full flex justify-end items-center gap-x-3">
+            {isEditMode && (
+              <button
+                className="bg-primary/10 text-primary font-medium px-2 py-0.5 rounded-md border border-primary flex items-center gap-x-1 text-sm"
+                type="submit"
+              >
+                <FiSave />
+                Kaydet
+              </button>
+            )}
+            <button
+              onClick={() => setIsEditMode(!isEditMode)}
+              type="button"
+              className="bg-blue-500/10 text-blue-500 font-medium px-2 py-0.5 rounded-md border border-blue-500 flex items-center gap-x-1 text-sm"
+            >
+              <TbEdit /> Düzenle
+            </button>
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">Telefon Numarası</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbPhoneCall size={16} />
-              </span>
-              <input
-                defaultValue={
-                  user.phoneNumber ? user.phoneNumber : "+90 *** *** ** **"
-                }
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
+          <div className="w-full mt-1 grid grid-cols-3 grid-rows-2 gap-3">
+            {userInfo.map((info, index) => (
+              <div key={index} className="flex flex-col gap-1">
+                <label className="text-sm text-zinc-600">{info.label}</label>
+                <div
+                  className={`flex gap-x-2 items-center  rounded-md border pl-2 h-10 ${
+                    isEditMode ? "bg-white" : "bg-neutral-100"
+                  }`}
+                >
+                  <span className="text-zinc-700 bg-white p-1 border rounded-md">
+                    {info.icon}
+                  </span>
+                  {info.type === "select" ? (
+                    <select
+                      {...register(info.name)}
+                      disabled={!isEditMode}
+                      className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
+                      defaultValue={info.value}
+                    >
+                      {info.options.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      defaultValue={info.value}
+                      className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
+                      {...register(info.name)}
+                      disabled={!isEditMode || info.disabled}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">E-posta</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbMail size={16} />
-              </span>
-              <input
-                defaultValue={user.email}
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">Yaş</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbUserScan size={16} />
-              </span>
-              <input
-                defaultValue={user.age ? user.age : "Yaş Belirlenmemiş"}
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">Ayak Tercihi</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbShoe size={16} />
-              </span>
-              <input
-                defaultValue={user.foot ? user.foot : "Ayak Belirlenmemiş"}
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">Mevkii</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <TbCurrentLocation size={16} />
-              </span>
-              <input
-                defaultValue={
-                  user.position ? user.position : "Mevkii Belirlenmemiş"
-                }
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-sm text-zinc-600">Şehir</label>
-            <div className="flex gap-x-2 items-center bg-neutral-100 rounded-md border pl-2 h-10">
-              <span className="text-zinc-700 bg-white p-1 border rounded-md">
-                <PiCityLight size={16} />
-              </span>
-              <input
-                defaultValue={user.city ? user.city : "Şehir Belirlenmemiş"}
-                className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
-                disabled
-              />
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );

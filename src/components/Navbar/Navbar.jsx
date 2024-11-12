@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Avatar from "~/assets/avatar.jpg";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
+  TbBell,
   TbChevronDown,
   TbLogout,
   TbMailStar,
   TbMoon,
+  TbNotification,
   TbSettings,
   TbUser,
 } from "react-icons/tb";
@@ -74,13 +76,19 @@ const Navbar = () => {
       <div className="flex items-center w-44">
         {user && (
           <div className="flex items-center gap-x-3">
-            <button className=" page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-medium">
+            <button className="min-w-32 page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200">
               İlan ver
+            </button>
+            <button className="relative page-header w-9 h-9 flex justify-center items-center rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200">
+              <TbBell size={20} />
+              <span className="absolute -top-2 -right-2 w-5 h-5 flex justify-center items-center bg-primaryDark text-white rounded-full">
+                1
+              </span>
             </button>
             <Menu>
               <MenuButton>
                 <img
-                  className="rounded-full w-9 ring-2 ring-primary ring-offset-2 flex object-cover"
+                  className="rounded-full max-w-9 hover:ring-2 transition-all duration-300 drop-shadow-xl ring-primary ring-offset-2 flex object-cover"
                   src={user.photoURL ? user.photoURL : Avatar}
                 />
               </MenuButton>
