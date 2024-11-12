@@ -74,7 +74,10 @@ const Navbar = () => {
       <div className="flex items-center w-44">
         {user && (
           <div className="flex items-center gap-x-3">
-            <button className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium">
+            <button
+              id="tour-example2"
+              className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
+            >
               İlan ver
             </button>
             <Menu>

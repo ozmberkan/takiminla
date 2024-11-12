@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typewriter from "typewriter-effect";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+
 const Home = () => {
   const { user } = useSelector((store) => store.user);
+
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      {
+        element: "#tour-example",
+        popover: {
+          title: "Kullanıcı Bilgileri",
+          description:
+            "Profilim sekmesine giderek profilini güncelleyebilirsin.",
+          side: "left",
+          align: "start",
+        },
+      },
+      {
+        element: "#tour-example2",
+        popover: {
+          title: "Takım Yönetimi",
+          description: "Ya da buradan ilan açabilirsin.",
+          side: "bottom",
+          align: "start",
+        },
+      },
+    ],
+  });
+
+  if (user) {
+    driverObj.drive();
+  }
 
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-center relative overflow-hidden">
@@ -50,6 +82,7 @@ const Home = () => {
           </span>
           {user ? (
             <Link
+              id="tour-example"
               to="/my-account"
               className="px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl"
             >
