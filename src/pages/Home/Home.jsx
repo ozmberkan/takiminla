@@ -84,7 +84,7 @@ const Home = () => {
                 : "Kullanıcı"
               : "Hoş geldin"}
           </h1>
-          <p className="text-zinc-600">
+          <p className="text-zinc-600 font-medium">
             Halısaha maçlarınızı kolayca organize edin ve arkadaşlarınızla
             keyifli vakit geçirin. Eğer bir takımınız yoksa, takım arayanlar ile
             bir araya gelerek yeni bir takım oluşturabilirsiniz. Hemen başlamak
@@ -94,14 +94,14 @@ const Home = () => {
             {user ? (
               <Link
                 to="/my-account"
-                className=" profile-btn inline-flex px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
+                className=" profile-btn font-semibold inline-flex px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
               >
                 Profilim
               </Link>
             ) : (
               <Link
                 to="/auth/register"
-                className=" inline-flex px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
+                className=" inline-flex font-semibold px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
               >
                 Hemen Başla
               </Link>

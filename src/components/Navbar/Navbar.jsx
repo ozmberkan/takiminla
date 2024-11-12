@@ -64,19 +64,19 @@ const Navbar = () => {
         <div className="flex gap-x-5 flex-1 justify-center items-center">
           <Link
             to="/about"
-            className="text-zinc-800 hover:text-zinc-500 font-medium"
+            className="text-zinc-800 hover:text-zinc-500 font-semibold"
           >
             Hakkımızda
           </Link>
           <Link
             to="/services"
-            className="text-zinc-800 hover:text-zinc-500 font-medium"
+            className="text-zinc-800 hover:text-zinc-500 font-semibold"
           >
             Hizmetler
           </Link>
           <Link
             to="/contact"
-            className="text-zinc-800 hover:text-zinc-500 font-medium"
+            className="text-zinc-800 hover:text-zinc-500 font-semibold"
           >
             İletişim
           </Link>
@@ -87,7 +87,7 @@ const Navbar = () => {
             <div className="flex items-center gap-x-3">
               <button
                 onClick={() => setIsCreateModal(true)}
-                className="min-w-32 page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
+                className="min-w-32 page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-semibold border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
               >
                 İlan ver
               </button>
@@ -121,7 +121,7 @@ const Navbar = () => {
                         className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
                         to="/my-account"
                       >
-                        <span className="text-zinc-600">
+                        <span className="text-zinc-600 font-semibold">
                           <TbUser size={22} />
                         </span>
                         Profilim
@@ -194,7 +194,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to="/auth/login"
-              className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
+              className="px-4  py-2 rounded-full text-sm bg-primary text-white font-semibold"
             >
               Oturum aç
             </Link>

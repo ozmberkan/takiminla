@@ -7,16 +7,19 @@ import {
   socialMedia,
 } from "~/data/data";
 
+import LogoWhite from "~/assets/logos/logotypedark.svg";
 const Footer = () => {
   return (
     <div className="h-[300px] footer border-t w-full bg-white">
       <div className="w-full  h-full container mx-auto max-w-7xl grid grid-cols-4">
         <div className=" p-7 flex flex-col justify-between items-start">
-          <div className="flex flex-col gap-1">
-            <span className="font-black text-2xl  text-primary ">
-              Takımınla
-            </span>
-            <p className="text-base text-zinc-700">Takımını kur sahaya çık!</p>
+          <div className="flex flex-col gap-3">
+            <img src={LogoWhite} className="w-44" />
+            <p className="text-sm text-zinc-700">
+              Halısaha maçlarınızı kolayca organize edin ve arkadaşlarınızla
+              keyifli vakit geçirin. Eğer bir takımınız yoksa, takım arayanlar
+              ile bir araya gelerek yeni bir takım oluşturabilirsiniz.
+            </p>
           </div>
           <div className="flex gap-x-4 items-center text-2xl ">
             {socialMedia.map((icon) => (

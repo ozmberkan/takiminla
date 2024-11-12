@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         nunito: ["Nunito", "sans-serif"],
+        gilroy: ["Gilroy", "sans-serif"],
       },
       colors: {
         primary: "#2dc552",
