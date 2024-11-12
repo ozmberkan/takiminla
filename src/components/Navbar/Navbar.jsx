@@ -18,9 +18,26 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
+import { signOut } from "firebase/auth";
+import { auth } from "~/firebase/firebase";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.user);
+
+  const exitHandle = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("user");
+
+      toast.success("Çıkış yapıldı");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
@@ -139,15 +156,15 @@ const Navbar = () => {
                   </Disclosure>
                   <hr className="h-px w-full bg-neutral-500 my-3" />
                   <MenuItem>
-                    <Link
+                    <button
                       className="text-sm font-semibold text-red-800 data-[focus]:bg-red-100  w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
-                      to="/my-account"
+                      onClick={exitHandle}
                     >
                       <span className=" text-red-800">
                         <TbLogout size={22} />
                       </span>
                       Çıkış Yap
-                    </Link>
+                    </button>
                   </MenuItem>
                 </MenuItems>
               </Transition>
