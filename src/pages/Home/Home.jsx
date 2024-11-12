@@ -2,42 +2,59 @@ import React, { useEffect } from "react";
 import Typewriter from "typewriter-effect";
 import { TbCircleArrowRightFilled } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDoc, doc } from "firebase/firestore"; // Import Firestore functions
+import { db } from "~/firebase/firebase"; // Ensure your Firebase setup is correctly imported
 
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import { getUserByID } from "~/redux/slices/userSlice";
 
 const Home = () => {
   const { user } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
-  const driverObj = driver({
-    showProgress: true,
-    steps: [
-      {
-        element: "#tour-example",
-        popover: {
-          title: "Kullanıcı Bilgileri",
-          description:
-            "Profilim sekmesine giderek profilini güncelleyebilirsin.",
-          side: "left",
-          align: "start",
-        },
-      },
-      {
-        element: "#tour-example2",
-        popover: {
-          title: "Takım Yönetimi",
-          description: "Ya da buradan ilan açabilirsin.",
-          side: "bottom",
-          align: "start",
-        },
-      },
-    ],
-  });
+  useEffect(() => {
+    if (!user || user.isLoggedOn === true) return;
 
-  if (user) {
+    const driverObj = driver({
+      showProgress: true,
+      animate: true,
+      opacity: 0.75,
+      doneBtnText: "Tamam",
+      closeBtnText: "Kapat",
+      nextBtnText: "İleri",
+      prevBtnText: "Geri",
+      onDestroyStarted: () => {
+        if (!driverObj.hasNextStep() || confirm("Are you sure?")) {
+          driverObj.destroy();
+          updateDoc(doc(db, "users", user.uid), {
+            isLoggedOn: true,
+          });
+          dispatch(getUserByID(user.uid));
+        }
+      },
+      steps: [
+        {
+          element: ".page-header",
+          popover: {
+            title: "İlan Yönetimi",
+            description: "Buradan ilan oluşturabilirsin.",
+          },
+        },
+        {
+          element: ".profile-btn",
+          popover: {
+            title: "Profil Yönetimi",
+            description:
+              "Profiline buradan ulaşabilir, bilgilerini güncelleyebilirsin.",
+          },
+        },
+      ],
+    });
+
     driverObj.drive();
-  }
+  }, [user]);
 
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-center relative overflow-hidden">
@@ -82,9 +99,8 @@ const Home = () => {
           </span>
           {user ? (
             <Link
-              id="tour-example"
               to="/my-account"
-              className="px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl"
+              className="profile-btn px-24 py-2 rounded-full bg-white text-primary font-bold drop-shadow-3xl"
             >
               Profilim
             </Link>
