@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PiCityLight } from "react-icons/pi";
 import {
+  TbChevronCompactLeft,
   TbCurrentLocation,
   TbEdit,
-  TbEditCircle,
   TbMail,
   TbPhoneCall,
-  TbPhoto,
   TbPhotoEdit,
   TbShoe,
   TbUser,
-  TbUserCheck,
   TbUserScan,
 } from "react-icons/tb";
+import { IoIosClose } from "react-icons/io";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Avatar from "~/assets/avatar.jpg";
@@ -166,9 +166,18 @@ const MyAccount = () => {
             <button
               onClick={() => setIsEditMode(!isEditMode)}
               type="button"
-              className="bg-blue-500/10 text-blue-500 font-medium px-2 py-0.5 rounded-md border border-blue-500 flex items-center gap-x-1 text-sm"
+              className="   "
             >
-              <TbEdit /> Düzenle
+              {!isEditMode ? (
+                <span className="flex items-center gap-x-1 text-sm border border-blue-500 bg-blue-500/10 text-blue-500 font-medium px-2 py-0.5 rounded-md">
+                  <TbEdit /> Düzenle
+                </span>
+              ) : (
+                <span className="flex items-center gap-x-1 text-sm border border-red-500 bg-red-500/10 text-red-500 font-medium px-2 py-0.5 rounded-md">
+                  <IoIosClose size={20} />
+                  Vazgeç
+                </span>
+              )}
             </button>
           </div>
           <div className="w-full mt-1 grid grid-cols-3 grid-rows-2 gap-3">
