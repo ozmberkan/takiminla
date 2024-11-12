@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
         <div className=" flex gap-x-2 items-center">
           <Link to="/" className="font-black text-xl text-primary">
-            <img src={LogoWhite} className="w-56" />
+            <img src={LogoWhite} className="w-52" />
             {/* <span>Takımınla </span> */}
           </Link>
           <span className="text-xs uppercase font-bold px-2 py-1 rounded-full bg-primary/10 border border-primary text-primary">
@@ -64,30 +64,30 @@ const Navbar = () => {
         <div className="flex gap-x-5 flex-1 justify-center items-center">
           <Link
             to="/about"
-            className="text-zinc-800 hover:text-zinc-500 font-semibold"
+            className="text-zinc-800 hover:text-zinc-500 font-medium"
           >
             Hakkımızda
           </Link>
           <Link
             to="/services"
-            className="text-zinc-800 hover:text-zinc-500 font-semibold"
+            className="text-zinc-800 hover:text-zinc-500 font-medium"
           >
             Hizmetler
           </Link>
           <Link
             to="/contact"
-            className="text-zinc-800 hover:text-zinc-500 font-semibold"
+            className="text-zinc-800 hover:text-zinc-500 font-medium"
           >
             İletişim
           </Link>
         </div>
 
-        <div className="flex items-center w-44">
+        <div className="flex items-center w-44 ">
           {user && (
             <div className="flex items-center gap-x-3">
               <button
                 onClick={() => setIsCreateModal(true)}
-                className="min-w-32 page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-semibold border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
+                className="min-w-32 page-header px-4 py-2 rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
               >
                 İlan ver
               </button>
@@ -114,14 +114,14 @@ const Navbar = () => {
                 >
                   <MenuItems
                     anchor="bottom end"
-                    className="mt-2 bg-white rounded-3xl p-3 gap-x-2 transition-all duration-500  shadow-md border border-zinc-200/50 flex items-start justify-start flex-col "
+                    className="mt-2 bg-white z-50 rounded-3xl p-3 gap-x-2 transition-all duration-500  shadow-md border border-zinc-200/50 flex items-start justify-start flex-col "
                   >
                     <MenuItem>
                       <Link
                         className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
                         to="/my-account"
                       >
-                        <span className="text-zinc-600 font-semibold">
+                        <span className="text-zinc-600">
                           <TbUser size={22} />
                         </span>
                         Profilim
@@ -194,7 +194,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to="/auth/login"
-              className="px-4  py-2 rounded-full text-sm bg-primary text-white font-semibold"
+              className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
             >
               Oturum aç
             </Link>

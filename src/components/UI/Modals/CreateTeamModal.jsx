@@ -5,7 +5,12 @@ import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { PiCityLight } from "react-icons/pi";
-import { TbCurrentLocation, TbTemplate } from "react-icons/tb";
+import {
+  TbCalendar,
+  TbCurrentLocation,
+  TbLocation,
+  TbTemplate,
+} from "react-icons/tb";
 import { db } from "~/firebase/firebase";
 
 const CreateTeamModal = ({ setIsCreateModal, user }) => {
@@ -27,6 +32,8 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         position: data.position,
         city: data.city,
         createdBy: user.uid,
+        date: data.date,
+        address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
 
@@ -39,7 +46,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
 
   return ReactDOM.createPortal(
     <div
-      className="modal-overlay fixed inset-0 bg-black/75 z-10 flex justify-center items-center"
+      className="modal-overlay fixed inset-0 bg-black/75  flex justify-center items-center z-30"
       onClick={handleClickOutside}
       aria-labelledby="modal-title"
       role="dialog"
@@ -101,6 +108,27 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
                 <option value="solKanat">Sol Kanat</option>
                 <option value="sagKanat">Sağ Kanat</option>
               </select>
+            </label>
+          </div>
+          <div className="relative ">
+            <label className="flex justify-start items-center h-10  bg-white border rounded-md pl-4">
+              <TbCalendar size={16} />
+              <input
+                type="date"
+                {...register("date")}
+                className="w-full outline-none px-4"
+              />
+            </label>
+          </div>
+          <div className="relative">
+            <label className="flex justify-start items-center h-10  bg-white border rounded-md pl-4">
+              <TbLocation size={16} />
+              <input
+                type="text"
+                {...register("address")}
+                className="w-full outline-none px-4"
+                placeholder="Adres"
+              />
             </label>
           </div>
 
