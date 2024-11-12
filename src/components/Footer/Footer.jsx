@@ -21,6 +21,7 @@ const Footer = () => {
           <div className="flex gap-x-4 items-center text-2xl ">
             {socialMedia.map((icon) => (
               <icon.icon
+                key={icon.id}
                 size={25}
                 className="hover:scale-125 hover:text-primary transform duration-200 cursor-pointer"
               />
