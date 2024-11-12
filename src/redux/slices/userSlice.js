@@ -28,6 +28,7 @@ export const registerService = createAsyncThunk(
         email: user.email,
         phoneNumber: user.phoneNumber,
         displayName: user.displayName,
+        role: "user",
         age: "",
         foot: "",
         position: "",

@@ -26,7 +26,7 @@ const Home = () => {
       nextBtnText: "İleri",
       prevBtnText: "Geri",
       onDestroyStarted: () => {
-        if (!driverObj.hasNextStep() || confirm("Are you sure?")) {
+        if (!driverObj.hasNextStep()) {
           driverObj.destroy();
           updateDoc(doc(db, "users", user.uid), {
             isLoggedOn: true,
