@@ -9,6 +9,7 @@ import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
 import Soccer from "~/assets/soccer.svg";
+import DashBoard from "~/assets/artboard.png";
 import { getUserByID } from "~/redux/slices/userSlice";
 import { motion } from "framer-motion";
 
@@ -59,17 +60,24 @@ const Home = () => {
   }, [user]);
 
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-start items-start relative overflow-hidden">
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-[850px] flex justify-start items-start relative overflow-hidden">
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
         src={Soccer}
-        className="absolute w-[1200px] -bottom-64 right-0 drop-shadow-4xl"
+        className="absolute w-[1200px] -bottom-60 right-0 drop-shadow-4xl z-10"
       />
-      <div className=" w-full flex items-start justify-start h-[400px] container mx-auto">
+      <motion.img
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        src={DashBoard}
+        className="absolute w-[1200px] -bottom-60 left-0 drop-shadow-4xl z-0 -rotate-12"
+      />
+      <div className=" w-full flex items-start justify-start h-[400px] container mx-auto z-20">
         <div className=" w-1/2 h-full py-12 flex flex-col gap-3">
-          <h1 className="text-[80px] font-extrabold text-primary ">
+          <h1 className="text-[80px] font-black text-primary ">
             {user
               ? user.displayName
                 ? user.displayName
