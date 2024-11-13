@@ -64,14 +64,14 @@ const Home = () => {
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.6 }}
         src={Soccer}
         className="absolute w-[1200px] -bottom-60 right-0 drop-shadow-4xl z-10"
       />
       <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 1 }}
         src={DashBoard}
         className="absolute w-[1200px] -bottom-60 left-0 drop-shadow-4xl z-0 -rotate-12"
       />

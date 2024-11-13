@@ -36,7 +36,7 @@ const Navbar = () => {
         <CreateTeamModal setIsCreateModal={setIsCreateModal} user={user} />
       )}
       <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
-        <div className=" flex gap-x-2 items-center">
+        <div className="flex gap-x-2 items-center">
           <Link to="/" className="font-black text-xl text-primary">
             <img src={LogoWhite} className="w-52" />
           </Link>
@@ -45,7 +45,7 @@ const Navbar = () => {
           </span>
         </div>
 
-        <div className="flex gap-x-5  justify-center items-center">
+        <div className="flex gap-x-5 justify-center items-center">
           {navbarLinks.map((link) => (
             <Link
               key={link.id}
@@ -55,10 +55,18 @@ const Navbar = () => {
               {link.title}
             </Link>
           ))}
+          {user && (
+            <Link
+              to="/lists"
+              className="text-zinc-800 hover:text-zinc-500 font-medium"
+            >
+              Tüm İlanlar
+            </Link>
+          )}
         </div>
 
-        <div className="flex items-center  ">
-          {user && (
+        <div className="flex items-center">
+          {user ? (
             <div className="flex items-center gap-x-3">
               <button
                 onClick={() => setIsCreateModal(true)}
@@ -69,8 +77,7 @@ const Navbar = () => {
               <Notification />
               <ProfileDown user={user} exitHandle={exitHandle} />
             </div>
-          )}
-          {!user && (
+          ) : (
             <Link
               to="/auth/login"
               className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"

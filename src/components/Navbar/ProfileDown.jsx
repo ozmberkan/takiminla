@@ -72,7 +72,7 @@ const ProfileDown = ({ user, exitHandle }) => {
               <span className="text-zinc-600">
                 <TbListDetails size={22} />
               </span>
-              İlanlar
+              Tüm İlanlar
             </Link>
           </MenuItem>
 

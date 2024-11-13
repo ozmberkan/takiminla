@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-inter bg-zinc-50;
+  @apply font-inter bg-zinc-50 scroll-smooth;
 }
 /* Scrollbar genişliği */
 ::-webkit-scrollbar {
