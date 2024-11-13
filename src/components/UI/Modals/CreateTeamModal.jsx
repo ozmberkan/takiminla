@@ -43,7 +43,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
 
-      toast.success("Takım oluşturuldu");
+      toast.success("İlan başarıyla oluşturuldu..");
       dispatch(getUsersTeams(user.uid));
       setIsCreateModal(false);
     } catch (error) {
