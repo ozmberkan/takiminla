@@ -14,8 +14,6 @@ const MyLists = () => {
     dispatch(getUsersTeams(user.uid));
   }, []);
 
-  console.log(teams);
-
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5 flex gap-x-2 items-center">

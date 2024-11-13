@@ -35,6 +35,24 @@ export const getUsersTeams = createAsyncThunk(
   }
 );
 
+export const getAllTeams = createAsyncThunk(
+  "teams/getAllTeams",
+  async ({ rejectWithValue }) => {
+    try {
+      const teamsRef = collection(db, "teams");
+
+      const teamsSnapshot = await getDocs(teamsRef);
+
+      const teamsData = teamsSnapshot.docs.map((doc) => doc.data());
+
+      return teamsData;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const teamsSlice = createSlice({
   name: "teams",
   initialState,
@@ -49,6 +67,16 @@ export const teamsSlice = createSlice({
         state.teams = action.payload;
       })
       .addCase(getUsersTeams.rejected, (state, action) => {
+        state.status = "failed";
+      })
+      .addCase(getAllTeams.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAllTeams.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.teams = action.payload;
+      })
+      .addCase(getAllTeams.rejected, (state, action) => {
         state.status = "failed";
       });
   },
