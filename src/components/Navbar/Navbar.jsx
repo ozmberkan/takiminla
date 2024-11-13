@@ -54,14 +54,13 @@ const Navbar = () => {
         <div className=" flex gap-x-2 items-center">
           <Link to="/" className="font-black text-xl text-primary">
             <img src={LogoWhite} className="w-52" />
-            {/* <span>Takımınla </span> */}
           </Link>
           <span className="text-xs uppercase font-bold px-2 py-1 rounded-full bg-primary/10 border border-primary text-primary">
             beta
           </span>
         </div>
 
-        <div className="flex gap-x-5 flex-1 justify-center items-center">
+        <div className="flex gap-x-5  justify-center items-center">
           <Link
             to="/about"
             className="text-zinc-800 hover:text-zinc-500 font-medium"
@@ -82,7 +81,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center w-44 ">
+        <div className="flex items-center  ">
           {user && (
             <div className="flex items-center gap-x-3">
               <button
@@ -100,7 +99,7 @@ const Navbar = () => {
               <Menu>
                 <MenuButton>
                   <img
-                    className="rounded-full max-w-9 hover:ring-2 transition-all duration-300 drop-shadow-xl ring-primary ring-offset-2 flex object-cover"
+                    className="rounded-full w-10 h-10 hover:ring-2 transition-all duration-300 drop-shadow-xl ring-primary ring-offset-2 flex object-cover"
                     src={user.photoURL ? user.photoURL : Avatar}
                   />
                 </MenuButton>
@@ -194,7 +193,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to="/auth/login"
-              className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium"
+              className="px-4 py-2 rounded-full text-sm bg-primary text-white font-medium border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
             >
               Oturum aç
             </Link>

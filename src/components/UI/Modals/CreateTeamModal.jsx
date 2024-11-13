@@ -32,7 +32,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         position: data.position,
         city: data.city,
         createdBy: user.uid,
-        date: data.date,
+        date: moment(data.date).format("DD.MM.YYYY HH:mm"),
         address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
@@ -110,26 +110,23 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
               </select>
             </label>
           </div>
-          <div className="relative ">
-            <label className="flex justify-start items-center h-10  bg-white border rounded-md pl-4">
-              <TbCalendar size={16} />
-              <input
-                type="date"
-                {...register("date")}
-                className="w-full outline-none px-4"
-              />
-            </label>
+          <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
+            <TbCalendar size={16} />
+            <input
+              type="datetime-local"
+              {...register("date")}
+              className="w-full outline-none px-4"
+              placeholder="Adres"
+            />
           </div>
-          <div className="relative">
-            <label className="flex justify-start items-center h-10  bg-white border rounded-md pl-4">
-              <TbLocation size={16} />
-              <input
-                type="text"
-                {...register("address")}
-                className="w-full outline-none px-4"
-                placeholder="Adres"
-              />
-            </label>
+          <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
+            <TbLocation size={16} />
+            <input
+              type="text"
+              {...register("address")}
+              className="w-full outline-none px-4"
+              placeholder="Halısaha Adresi"
+            />
           </div>
 
           <div className="col-span-2">

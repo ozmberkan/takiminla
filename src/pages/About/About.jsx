@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const About = () => {
+
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-start mt-24 relative overflow-hidden">
-      <div className="bg-white shadow-2xl h-[500px] w-2/3 rounded-xl p-12 flex flex-col gap-4">
-        <h1 className="text-3xl font-bold text-primary ">Hakkımızda</h1>
-        <p className="text-lg text-zinc-700">
-          "Takımınla" olarak, sporseverleri bir araya getirerek dostluk ve
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
+      <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
+        Hakkımızda
+      </h1>
+      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+        <div className="flex flex-row gap-x-2 w-full">
+          Takımınla olarak, sporseverleri bir araya getirerek dostluk ve
           rekabetin iç içe geçtiği bir platform sunuyoruz. Futbol tutkunlarının
           ortak bir noktada buluşup, en iyi deneyimi yaşayabilmeleri için
           çalışıyoruz. Maç düzenlemek, katılım sağlamak ve oyuncularla etkileşim
@@ -26,9 +29,8 @@ const About = () => {
           oyuncularla tanışın ve yeşil sahalarda daha fazla eğlence için bir
           adım atın! Sizinle birlikte, daha güçlü bir futbol topluluğu
           oluşturmak için buradayız.
-        </p>
-        <div className="mt-3">
-          {" "}
+        </div>
+        <div className="mt-2">
           <Link
             to="/services"
             className="bg-primary text-sm text-white rounded-md px-4 py-2"

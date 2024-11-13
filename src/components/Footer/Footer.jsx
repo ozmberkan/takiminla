@@ -72,9 +72,12 @@ const Footer = () => {
             >
               {footerAddress.phone}
             </Link>
-            <button className=" py-1 rounded-md bg-primary text-white mt-3 hover:bg-primaryDark">
+            <Link
+              to="/contact"
+              className=" py-1 rounded-md bg-primary text-white mt-3 border border-transparent flex justify-center items-center hover:bg-white hover:border-primary hover:text-primary transition-colors duration-200"
+            >
               {footerAddress.buttonLabel}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

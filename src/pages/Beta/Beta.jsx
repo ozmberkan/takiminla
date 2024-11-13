@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const Beta = () => {
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-start mt-24 relative overflow-hidden">
-      <div className="bg-white shadow-2xl h-[500px] w-2/3 rounded-xl p-12 flex flex-col gap-4">
-        <h1 className="text-3xl font-bold text-primary ">Erken Erişim</h1>
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
+      <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
+        Erken Erişim
+      </h1>
+      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
         <p className="mt-1">
           <strong>Takımınla</strong> platformuna erken erişim fırsatıyla,
           sporseverlere ilk kullanıcılar arasında yer alma ve uygulamanın
@@ -24,7 +26,7 @@ const Beta = () => {
         <div className="mt-2">
           <Link
             to="/contact"
-            className="px-4 py-2 rounded-md bg-primary text-white"
+            className="bg-primary text-sm text-white rounded-md px-4 py-2 border border-transparent hover:bg-white hover:text-primary hover:border-primary transition-colors "
           >
             Geri bildirimde bulun
           </Link>

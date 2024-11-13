@@ -2,10 +2,12 @@ import React from "react";
 
 const Services = () => {
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex justify-center items-start mt-24 relative overflow-hidden">
-      <div className="bg-white shadow-2xl h-[500px] w-2/3 rounded-xl p-12 flex flex-col gap-4">
-        <h1 className="text-3xl font-bold text-primary ">Hizmetler</h1>
-        <ul className="text-base text-zinc-700">
+    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
+      <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
+        Hizmetlerimiz
+      </h1>
+      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+        <ul className="text-base text-zinc-700 flex flex-col gap-3">
           <li>
             <strong>Maç Düzenleme</strong>: Kolayca kendi maçınızı organize edin
             ve diğer kullanıcılara davet gönderin. Maç bilgilerinizi, tarih ve
@@ -39,13 +41,6 @@ const Services = () => {
             elinizde tutun.
           </li>
         </ul>
-        <p className="mt-1">
-          Bu hizmetler, kullanıcılarımızın futbol sevgisini daha iyi bir şekilde
-          yaşamalarına, yeni insanlarla tanışmalarına ve kaliteli bir futbol
-          deneyimi elde etmelerine olanak tanır. <strong>Takımınla</strong>{" "}
-          platformuyla futbolun heyecanını yeniden keşfedin ve her maçı
-          unutulmaz kılın!
-        </p>
       </div>
     </div>
   );

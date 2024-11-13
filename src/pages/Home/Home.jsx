@@ -101,7 +101,7 @@ const Home = () => {
             ) : (
               <Link
                 to="/auth/register"
-                className=" inline-flex font-semibold px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
+                className=" inline-flex font-semibold px-8 py-1 rounded-full bg-primary text-white text-sm mt-3 border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
               >
                 Hemen Başla
               </Link>
