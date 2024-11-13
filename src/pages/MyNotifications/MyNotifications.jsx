@@ -32,6 +32,25 @@ const MyNotifications = () => {
     }
   };
 
+  const cancelInvite = async (notification) => {
+    try {
+      const userRef = doc(db, "users", user.uid);
+
+      const deleteNotification = user.notifications.filter(
+        (noti) => noti.notificationID !== notification.notificationID
+      );
+
+      await updateDoc(userRef, {
+        notifications: deleteNotification,
+      });
+
+      toast.success("Davet Reddedildi.");
+      dispatch(getUserByID(user.uid));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5 flex gap-x-2 items-center">
@@ -75,7 +94,10 @@ const MyNotifications = () => {
                 >
                   Kabul Et
                 </button>
-                <button className="px-3 py-1 rounded-md bg-red-600/10 text-red-600 border border-red-600 text-sm">
+                <button
+                  onClick={() => cancelInvite(notification)}
+                  className="px-3 py-1 rounded-md bg-red-600/10 text-red-600 border border-red-600 text-sm"
+                >
                   Reddet
                 </button>
               </div>
