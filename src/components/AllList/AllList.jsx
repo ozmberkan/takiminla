@@ -1,4 +1,4 @@
-import { deleteDoc, doc } from "firebase/firestore";
+import { arrayUnion, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { PiCityLight } from "react-icons/pi";
@@ -11,12 +11,14 @@ import {
   TbTrash,
   TbUser,
 } from "react-icons/tb";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { db } from "~/firebase/firebase";
-import { getUsersTeams } from "~/redux/slices/teamsSlice";
-import EditTeamModal from "../UI/Modals/EditTeamModal";
+import { getUserByID } from "~/redux/slices/userSlice";
+import { nanoid } from "nanoid";
 
-const List = ({ team }) => {
+const AllList = ({ team }) => {
+  const { user } = useSelector((store) => store.user);
+
   const {
     city,
     address,
@@ -28,33 +30,36 @@ const List = ({ team }) => {
     teamID,
   } = team;
   const dispatch = useDispatch();
-  const [selectedList, setSelectedList] = useState(null);
-  const [isEditMode, setIsEditMode] = useState(false);
 
-  const deleteTeam = async (teamID) => {
+  const sendInvite = async (team) => {
     try {
-      const teamRef = doc(db, "teams", teamID);
-      await deleteDoc(teamRef);
-      toast.success("Takım başarıyla silindi");
-      dispatch(getUsersTeams(createdBy));
+      const userRef = doc(db, "users", team.createdBy);
+
+      const inviteContent = {
+        fromName: user.displayName,
+        fromAge: user.age,
+        fromPhoto: user.photoURL,
+        fromFoot: user.foot,
+        fromPosition: user.position,
+        fromID: user.uid,
+        teamID: team.teamID,
+        notificationID: nanoid(),
+      };
+
+      await updateDoc(userRef, {
+        notifications: arrayUnion(inviteContent),
+      });
+
+      toast.success("Davet Gönderildi");
+
+      dispatch(getUserByID(user.uid));
     } catch (error) {
       console.log(error);
     }
   };
 
-  const openEdit = (team) => {
-    setIsEditMode(true);
-    setSelectedList(team);
-  };
-
   return (
     <>
-      {isEditMode && (
-        <EditTeamModal
-          selectedList={selectedList}
-          setIsEditMode={setIsEditMode}
-        />
-      )}
       <div className="w-full rounded-xl border p-3 flex flex-col gap-3 shadow-md">
         <div className="w-full flex justify-between items-center border bg-zinc-500  text-zinc-200 px-4 py-2 rounded-md">
           <span className="flex gap-x-1 items-center font-medium">
@@ -67,13 +72,21 @@ const List = ({ team }) => {
           </span>
         </div>
         <div className="w-full bg-zinc-100 border rounded-md px-4 py-2 flex flex-col gap-3">
-          <p className="flex gap-x-1 items-center pb-3 border-b">
-            <img
-              src={createdPhoto ? createdPhoto : Avatar}
-              className="w-10 h-10 rounded-md shadow"
-            />
-            {createdName ? createdName : "Kullanıcı"}
-          </p>
+          <div className="flex gap-x-1 items-center justify-between  border-b w-full pb-3">
+            <div className="flex items-center gap-x-3">
+              <img
+                src={createdPhoto ? createdPhoto : Avatar}
+                className="w-10 h-10 rounded-md shadow"
+              />
+              <span> {createdName ? createdName : "Kullanıcı"}</span>
+            </div>
+            <button
+              onClick={() => sendInvite(team)}
+              className="px-4 py-2 rounded-md text-sm  bg-primary/10 border border-primary font-bold hover:bg-primary hover:text-white transition-colors duration-300 text-primary"
+            >
+              Davet Gönder
+            </button>
+          </div>
           <p className="flex gap-x-1 items-center">
             <TbLocation />
             {address}
@@ -88,23 +101,9 @@ const List = ({ team }) => {
             {position === "sagKanat" && "Sağ Kanat"}
           </p>
         </div>
-        <div className="w-full flex justify-end items-start py-2 gap-x-2">
-          <button
-            onClick={() => deleteTeam(teamID)}
-            className="px-3 py-1 rounded-md text-sm border flex bg-red-50  border-red-500 text-red-500 items-center gap-x-1"
-          >
-            <TbTrash /> Sil
-          </button>
-          <button
-            onClick={() => openEdit(team)}
-            className="px-3 py-1 rounded-md text-sm border flex bg-blue-50  border-blue-500 text-blue-500 items-center gap-x-1"
-          >
-            <TbEdit /> Düzenle
-          </button>
-        </div>
       </div>
     </>
   );
 };
 
-export default List;
+export default AllList;

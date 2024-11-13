@@ -37,6 +37,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         city: data.city,
         createdBy: user.uid,
         createdName: user.displayName,
+        createdPhoto: user.photoURL,
         date: moment(data.date).format("DD.MM.YYYY HH:mm"),
         address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
