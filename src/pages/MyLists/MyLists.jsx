@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { TbLayoutDistributeHorizontal } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
+import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
 import { getUsersTeams } from "~/redux/slices/teamsSlice";
 
@@ -31,10 +32,14 @@ const MyLists = () => {
         <TbLayoutDistributeHorizontal />
         İlanlarım
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
-        {myTeams.map((team) => (
-          <div key={team.teamID}>{team.city}</div>
-        ))}
+      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-5">
+        {myTeams.length > 0 ? (
+          myTeams.map((team) => <List key={team.teamID} team={team} />)
+        ) : (
+          <div className="col-span-2 bg-red-50 px-4 py-2 rounded-md border border-red-600 text-red-600">
+            Henüz herhangi bir ilan oluşturmadınız.
+          </div>
+        )}
       </div>
     </motion.div>
   );

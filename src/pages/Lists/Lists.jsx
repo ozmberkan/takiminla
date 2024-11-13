@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { TbListDetails } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
+import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
 import { getAllTeams } from "~/redux/slices/teamsSlice";
 
@@ -31,7 +32,7 @@ const Lists = () => {
       </h1>
       <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
         {teams.map((team) => (
-          <div key={team.teamID}>{team.city}</div>
+          <div>{team.city}</div>
         ))}
       </div>
     </motion.div>

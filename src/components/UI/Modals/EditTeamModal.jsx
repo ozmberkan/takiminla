@@ -1,5 +1,4 @@
-import { collection, doc, setDoc } from "firebase/firestore";
-import moment from "moment";
+import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
@@ -15,36 +14,39 @@ import { useDispatch } from "react-redux";
 import { db } from "~/firebase/firebase";
 import { getUsersTeams } from "~/redux/slices/teamsSlice";
 
-const CreateTeamModal = ({ setIsCreateModal, user }) => {
+const EditTeamModal = ({ setIsEditMode, selectedList }) => {
   const modalRoot = document.getElementById("root-modal");
+  const dispatch = useDispatch();
 
   const handleClickOutside = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
-      setIsCreateModal(false);
+      setIsEditMode(false);
     }
   };
 
-  const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      city: selectedList.city,
+      position: selectedList.position,
+      date: selectedList.date,
+      address: selectedList.address,
+    },
+  });
 
-  const createHandle = async (data) => {
+  const updateHandle = async (data) => {
     try {
-      const teamRef = doc(collection(db, "teams"));
+      const teamRef = doc(db, "teams", selectedList.teamID);
 
-      await setDoc(teamRef, {
-        teamID: teamRef.id,
-        position: data.position,
+      await updateDoc(teamRef, {
         city: data.city,
-        createdBy: user.uid,
-        createdName: user.displayName,
-        date: moment(data.date).format("DD.MM.YYYY HH:mm"),
+        position: data.position,
+        date: data.date,
         address: data.address,
-        createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
 
-      toast.success("Takım oluşturuldu");
-      dispatch(getUsersTeams(user.uid));
-      setIsCreateModal(false);
+      toast.success("Takım güncellendi");
+      setIsEditMode(false);
+      dispatch(getUsersTeams(selectedList.createdBy));
     } catch (error) {
       console.log(error);
     }
@@ -68,18 +70,17 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
               className="text-lg font-semibold text-gray-900"
               id="modal-title"
             >
-              Halısaha İlanı Oluştur
+              Halısaha İlanını Güncelle
             </h3>
             <p className="mt-1 text-sm text-gray-500">
-              Eğer takımında eksik varsa, buradan ilan oluşturarak yeni
-              oyuncular bulabilirsin. Durma hemen oluştur!
+              Bir yanlışlık olduysa buradan düzeltebilirsin.
             </p>
           </div>
         </div>
 
         <form
           className="p-6 grid grid-cols-2 gap-4"
-          onSubmit={handleSubmit(createHandle)}
+          onSubmit={handleSubmit(updateHandle)}
         >
           <div className="relative">
             <label className="flex items-center h-10 bg-white border rounded-md pl-4">
@@ -150,4 +151,4 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
   );
 };
 
-export default CreateTeamModal;
+export default EditTeamModal;
