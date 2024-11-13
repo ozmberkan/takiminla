@@ -58,6 +58,13 @@ const AllList = ({ team }) => {
     }
   };
 
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      address
+    )}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <>
       <div className="w-full rounded-xl border p-3 flex flex-col gap-3 shadow-md">
@@ -80,12 +87,21 @@ const AllList = ({ team }) => {
               />
               <span> {createdName ? createdName : "Kullanıcı"}</span>
             </div>
-            <button
-              onClick={() => sendInvite(team)}
-              className="px-4 py-2 rounded-md text-sm  bg-primary/10 border border-primary font-bold hover:bg-primary hover:text-white transition-colors duration-300 text-primary"
-            >
-              Davet Gönder
-            </button>
+            <div className="flex gap-x-2 items-center">
+              <button
+                onClick={() => sendInvite(team)}
+                className="px-4 py-2 rounded-md text-xs  bg-primary/10 border border-primary font-bold hover:bg-primary hover:text-white transition-colors duration-300 text-primary"
+              >
+                Davet Gönder
+              </button>
+              <button
+                className="px-4 py-2 rounded-md text-xs flex items-center gap-x-1  bg-blue-500/10 border border-blue-500 font-bold hover:bg-blue-500 hover:text-white transition-colors duration-300 text-blue-500"
+                onClick={openGoogleMaps}
+              >
+                <TbLocation />
+                Lokasyonu Gör
+              </button>
+            </div>
           </div>
           <p className="flex gap-x-1 items-center">
             <TbLocation />

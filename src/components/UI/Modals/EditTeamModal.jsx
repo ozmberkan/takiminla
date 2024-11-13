@@ -1,4 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
+import moment from "moment";
 import React from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
@@ -40,7 +41,7 @@ const EditTeamModal = ({ setIsEditMode, selectedList }) => {
       await updateDoc(teamRef, {
         city: data.city,
         position: data.position,
-        date: data.date,
+        date: moment(data.date).format("DD.MM.YYYY HH:mm"),
         address: data.address,
       });
 
