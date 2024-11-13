@@ -6,6 +6,7 @@ import Contact from "~/pages/Contacts/Contact";
 import Beta from "~/pages/Beta/Beta";
 import MyAccount from "~/pages/MyAccount/MyAccount";
 import { roleLoader } from "~/loader/roleLoader";
+import Lists from "~/pages/Lists/Lists";
 
 export const HomeRoutes = {
   path: "/",
@@ -19,6 +20,11 @@ export const HomeRoutes = {
     {
       path: "/my-account",
       element: <MyAccount />,
+      loader: () => roleLoader(["admin", "user"]),
+    },
+    {
+      path: "/lists",
+      element: <Lists />,
       loader: () => roleLoader(["admin", "user"]),
     },
   ],

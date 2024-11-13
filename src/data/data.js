@@ -39,3 +39,9 @@ export const contactInputs = [
   },
   { id: 4, name: "content", type: "text", placeholder: "İçerik giriniz.." },
 ];
+
+export const navbarLinks = [
+  { id: 1, title: "Hakkımızda", to: "/about" },
+  { id: 2, title: "Hizmetler", to: "/services" },
+  { id: 3, title: "İletişim", to: "/contact" },
+];
