@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   TbBell,
   TbChevronDown,
+  TbLayoutDistributeHorizontal,
   TbListDetails,
   TbLogout,
   TbMailStar,
@@ -50,6 +51,17 @@ const ProfileDown = ({ user, exitHandle }) => {
                 <TbUser size={22} />
               </span>
               Profilim
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
+              to="/my-lists"
+            >
+              <span className="text-zinc-600">
+                <TbLayoutDistributeHorizontal size={22} />
+              </span>
+              İlanlarım
             </Link>
           </MenuItem>
           <MenuItem>

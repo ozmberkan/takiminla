@@ -29,6 +29,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
       const teamRef = doc(collection(db, "teams"));
 
       await setDoc(teamRef, {
+        teamID: teamRef.id,
         position: data.position,
         city: data.city,
         createdBy: user.uid,

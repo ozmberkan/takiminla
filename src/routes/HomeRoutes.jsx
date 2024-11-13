@@ -7,6 +7,8 @@ import Beta from "~/pages/Beta/Beta";
 import MyAccount from "~/pages/MyAccount/MyAccount";
 import { roleLoader } from "~/loader/roleLoader";
 import Lists from "~/pages/Lists/Lists";
+import MyNotifications from "~/pages/MyNotifications/MyNotifications";
+import MyLists from "~/pages/MyLists/MyLists";
 
 export const HomeRoutes = {
   path: "/",
@@ -25,6 +27,16 @@ export const HomeRoutes = {
     {
       path: "/lists",
       element: <Lists />,
+      loader: () => roleLoader(["admin", "user"]),
+    },
+    {
+      path: "/my-notifications",
+      element: <MyNotifications />,
+      loader: () => roleLoader(["admin", "user"]),
+    },
+    {
+      path: "/my-lists",
+      element: <MyLists />,
       loader: () => roleLoader(["admin", "user"]),
     },
   ],
