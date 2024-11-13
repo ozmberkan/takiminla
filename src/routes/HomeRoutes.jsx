@@ -9,6 +9,8 @@ import { roleLoader } from "~/loader/roleLoader";
 import Lists from "~/pages/Lists/Lists";
 import MyNotifications from "~/pages/MyNotifications/MyNotifications";
 import MyLists from "~/pages/MyLists/MyLists";
+import UserLists from "~/pages/UsersLists/UserLists";
+import MyMatchs from "~/pages/MyMatchs/MyMatchs";
 
 export const HomeRoutes = {
   path: "/",
@@ -30,6 +32,11 @@ export const HomeRoutes = {
       loader: () => roleLoader(["admin", "user"]),
     },
     {
+      path: "/user-lists",
+      element: <UserLists />,
+      loader: () => roleLoader(["admin", "user"]),
+    },
+    {
       path: "/my-notifications",
       element: <MyNotifications />,
       loader: () => roleLoader(["admin", "user"]),
@@ -37,6 +44,11 @@ export const HomeRoutes = {
     {
       path: "/my-lists",
       element: <MyLists />,
+      loader: () => roleLoader(["admin", "user"]),
+    },
+    {
+      path: "/my-matchs",
+      element: <MyMatchs />,
       loader: () => roleLoader(["admin", "user"]),
     },
   ],

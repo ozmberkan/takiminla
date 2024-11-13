@@ -29,15 +29,34 @@ export const footerAddress = {
 };
 
 export const contactInputs = [
-  { id: 1, name: "name", type: "text", placeholder: "İsim giriniz.." },
-  { id: 2, name: "email", type: "email", placeholder: "E-Mail giriniz.." },
+  {
+    id: 1,
+    name: "name",
+    label: "İsim Soyisim",
+    type: "text",
+    placeholder: "İsim giriniz..",
+  },
+  {
+    id: 2,
+    name: "email",
+    label: "E-posta",
+    type: "email",
+    placeholder: "E-Mail giriniz..",
+  },
   {
     id: 3,
     name: "title",
     type: "text",
+    label: "Başlık",
     placeholder: "Konu Başlığı giriniz..",
   },
-  { id: 4, name: "content", type: "text", placeholder: "İçerik giriniz.." },
+  {
+    id: 4,
+    label: "İçerik",
+    name: "content",
+    type: "text",
+    placeholder: "İçerik giriniz..",
+  },
 ];
 
 export const navbarLinks = [

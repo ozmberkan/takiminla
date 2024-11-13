@@ -3,8 +3,10 @@ import Avatar from "~/assets/avatar.jpg";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   TbBell,
+  TbBuildingStadium,
   TbChevronDown,
   TbLayoutDistributeHorizontal,
+  TbList,
   TbListDetails,
   TbLogout,
   TbMailStar,
@@ -12,6 +14,7 @@ import {
   TbNotification,
   TbSettings,
   TbUser,
+  TbUsers,
 } from "react-icons/tb";
 import { Transition } from "@headlessui/react"; // Import Transition component
 import {
@@ -56,6 +59,17 @@ const ProfileDown = ({ user, exitHandle }) => {
           <MenuItem>
             <Link
               className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
+              to="/my-matchs"
+            >
+              <span className="text-zinc-600">
+                <TbBuildingStadium size={22} />
+              </span>
+              Maçlarım
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
               to="/my-lists"
             >
               <span className="text-zinc-600">
@@ -64,26 +78,15 @@ const ProfileDown = ({ user, exitHandle }) => {
               İlanlarım
             </Link>
           </MenuItem>
-          <MenuItem>
-            <Link
-              className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
-              to="/lists"
-            >
-              <span className="text-zinc-600">
-                <TbListDetails size={22} />
-              </span>
-              Tüm İlanlar
-            </Link>
-          </MenuItem>
 
           <Disclosure>
             {({ open }) => (
               <>
                 <DisclosureButton className="text-sm font-semibold hover:text-zinc-800 hover:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center">
                   <span className="text-zinc-600">
-                    <TbSettings size={22} />
+                    <TbListDetails size={22} />
                   </span>
-                  Ayarlarım{" "}
+                  Tüm İlanlar{" "}
                   <TbChevronDown
                     className={`${
                       open
@@ -103,9 +106,18 @@ const ProfileDown = ({ user, exitHandle }) => {
                   leaveTo="transform scale-y-0 opacity-0"
                 >
                   <DisclosurePanel className="text-gray-500 w-full  mt-2 flex flex-col gap-2 origin-top transition duration-200 ease-out">
-                    <button className="text-sm font-semibold hover:bg-[#202020] hover:text-white bg-neutral-100 text-zinc-600 w-full rounded-md flex gap-x-2 px-5 py-2 items-center">
-                      <TbMoon /> Karanlık Mod
-                    </button>
+                    <Link
+                      to="/lists"
+                      className="text-sm font-semibold hover:bg-[#202020] hover:text-white bg-neutral-100 text-zinc-600 w-full rounded-md flex gap-x-2 px-5 py-2 items-center"
+                    >
+                      <TbList size={17} /> Takım İlanları
+                    </Link>
+                    <Link
+                      to="/user-lists"
+                      className="text-sm font-semibold hover:bg-[#202020] hover:text-white bg-neutral-100 text-zinc-600 w-full rounded-md flex gap-x-2 px-5 py-2 items-center"
+                    >
+                      <TbUsers size={17} /> Oyuncu İlanları
+                    </Link>
                   </DisclosurePanel>
                 </Transition>
               </>

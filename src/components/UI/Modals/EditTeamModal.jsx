@@ -4,6 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { PiCityLight } from "react-icons/pi";
 import {
   TbCalendar,
@@ -18,12 +19,6 @@ import { getUsersTeams } from "~/redux/slices/teamsSlice";
 const EditTeamModal = ({ setIsEditMode, selectedList }) => {
   const modalRoot = document.getElementById("root-modal");
   const dispatch = useDispatch();
-
-  const handleClickOutside = (e) => {
-    if (e.target.classList.contains("modal-overlay")) {
-      setIsEditMode(false);
-    }
-  };
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -56,7 +51,6 @@ const EditTeamModal = ({ setIsEditMode, selectedList }) => {
   return ReactDOM.createPortal(
     <div
       className="modal-overlay fixed inset-0 bg-black/75  flex justify-center items-center z-30"
-      onClick={handleClickOutside}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -66,12 +60,18 @@ const EditTeamModal = ({ setIsEditMode, selectedList }) => {
           <div className="flex-shrink-0 bg-green-100 rounded-full p-2">
             <TbTemplate className="text-green-500" />
           </div>
-          <div className="ml-4">
+          <div className="ml-4 w-full">
             <h3
-              className="text-lg font-semibold text-gray-900"
+              className="text-lg font-semibold text-gray-900 flex justify-between items-center "
               id="modal-title"
             >
-              Halısaha İlanını Güncelle
+              Halısaha İlanı Oluştur
+              <button
+                className="hover:text-primary"
+                onClick={() => setIsEditMode(false)}
+              >
+                <IoCloseCircleOutline size={20} />
+              </button>
             </h3>
             <p className="mt-1 text-sm text-gray-500">
               Bir yanlışlık olduysa buradan düzeltebilirsin.

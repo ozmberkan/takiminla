@@ -35,7 +35,7 @@ const List = ({ team }) => {
     try {
       const teamRef = doc(db, "teams", teamID);
       await deleteDoc(teamRef);
-      toast.success("Takım başarıyla silindi");
+      toast.success("İlan başarıyla silindi.");
       dispatch(getUsersTeams(createdBy));
     } catch (error) {
       console.log(error);
@@ -91,13 +91,13 @@ const List = ({ team }) => {
         <div className="w-full flex justify-end items-start py-2 gap-x-2">
           <button
             onClick={() => deleteTeam(teamID)}
-            className="px-3 py-1 rounded-md text-sm border flex bg-red-50  border-red-500 text-red-500 items-center gap-x-1"
+            className="px-3 py-1 rounded-md hover:bg-red-500 transition-colors hover:text-white text-sm border flex bg-red-50  border-red-500 text-red-500 items-center gap-x-1"
           >
             <TbTrash /> Sil
           </button>
           <button
             onClick={() => openEdit(team)}
-            className="px-3 py-1 rounded-md text-sm border flex bg-blue-50  border-blue-500 text-blue-500 items-center gap-x-1"
+            className="px-3 py-1 rounded-md hover:bg-blue-500 transition-colors hover:text-white text-sm border flex bg-blue-50  border-blue-500 text-blue-500 items-center gap-x-1"
           >
             <TbEdit /> Düzenle
           </button>

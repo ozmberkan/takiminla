@@ -10,6 +10,7 @@ import {
   TbCurrentLocation,
   TbLocation,
   TbTemplate,
+  TbUser,
 } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { db } from "~/firebase/firebase";
@@ -17,37 +18,42 @@ import { getUsersTeams } from "~/redux/slices/teamsSlice";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import Avatar from "~/assets/avatar.jpg";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
-const CreateTeamModal = ({ setIsCreateModal, user }) => {
+const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
   const modalRoot = document.getElementById("root-modal");
 
   const { register, handleSubmit } = useForm();
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const createHandle = async (data) => {
     try {
-      const teamRef = doc(collection(db, "teams"));
+      const userListRef = doc(collection(db, "userList"));
 
-      if (user.displayName === null) {
+      if (
+        user.displayName === null ||
+        user.foot === null ||
+        user.position === null
+      ) {
         toast.error("Önce profil bilgilerini güncellemelisin..");
-        setIsCreateModal(false);
+        setIsCreateUserModal(false);
         return;
       }
 
-      await setDoc(teamRef, {
-        teamID: teamRef.id,
-        position: data.position,
+      await setDoc(userListRef, {
         city: data.city,
+        position: data.position,
         createdBy: user.uid,
         createdName: user.displayName,
         createdPhoto: user.photoURL ? user.photoURL : Avatar,
-        date: moment(selectedDate).format("DD.MM.YYYY HH:mm"),
+        foot: user.foot,
+        age: user.age,
+        weight: user.weight,
+        height: user.height,
+        startDate: moment(data.startDate).format("DD.MM.YYYY HH:mm"),
+        endDate: moment(data.endDate).format("DD.MM.YYYY HH:mm"),
         address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
@@ -71,24 +77,24 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
       <div className="relative bg-white rounded-lg shadow-lg w-full max-w-lg mx-4 sm:mx-0">
         <div className="flex items-start p-6 border-b border-gray-200">
           <div className="flex-shrink-0 bg-green-100 rounded-full p-2">
-            <TbTemplate className="text-green-500" />
+            <TbUser className="text-green-500" />
           </div>
           <div className="ml-4">
             <h3
               className="text-lg font-semibold text-gray-900 flex justify-between items-center"
               id="modal-title"
             >
-              Halısaha İlanı Oluştur
+              Oyuncu Olarak İlan Oluştur
               <button
                 className="hover:text-primary"
-                onClick={() => setIsCreateModal(false)}
+                onClick={() => setIsCreateUserModal(false)}
               >
                 <IoCloseCircleOutline size={20} />
               </button>
             </h3>
             <p className="mt-1 text-sm text-gray-500">
-              Eğer takımında eksik varsa, buradan ilan oluşturarak yeni
-              oyuncular bulabilirsin. Durma hemen oluştur!
+              Eğer canın sıkıldıysa ve maç yapmak istiyorsan buradan ilan
+              oluşturabilirsin.
             </p>
           </div>
         </div>
@@ -134,24 +140,15 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
           </div>
           <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
             <TbCalendar size={16} />
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              dateFormat="dd.MM.yyyy HH:mm"
-              placeholderText="Tarih ve saat seçiniz"
-              className=" w-[400px] pl-2 ml-2 outline-none h-full"
+            <input
+              type="datetime-local"
+              {...register("startDate")}
+              className="w-full outline-none px-4"
             />
           </div>
           <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
-            <TbLocation size={16} />
-            <input
-              type="text"
-              {...register("address", { required: true })}
-              className="w-full outline-none px-4"
-              placeholder="Halısaha Adresi"
-            />
+            <TbCalendar size={16} {...register("endDate")} />
+            <input type="datetime-local" className="w-full outline-none px-4" />
           </div>
 
           <div className="col-span-2">
@@ -169,4 +166,4 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
   );
 };
 
-export default CreateTeamModal;
+export default CreateUserListModal;
