@@ -46,7 +46,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         city: data.city,
         createdBy: user.uid,
         createdName: user.displayName,
-        createdPhoto: user.photoURL ? user.photoURL : Avatar,
+        createdPhoto: user?.photoURL,
         date: moment(selectedDate).format("DD.MM.YYYY HH:mm"),
         address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
@@ -78,7 +78,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
               className="text-lg font-semibold text-gray-900 flex justify-between items-center"
               id="modal-title"
             >
-              Halısaha İlanı Oluştur
+              Halısaha'da oyuncuya mı ihtiyacın var ?
               <button
                 className="hover:text-primary"
                 onClick={() => setIsCreateModal(false)}

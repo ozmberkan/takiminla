@@ -57,10 +57,10 @@ const Navbar = () => {
           ))}
           {user && (
             <Link
-              to="/lists"
+              to="/team-list"
               className="text-zinc-800 hover:text-zinc-500 font-medium"
             >
-              Tüm İlanlar
+              Takım İlanları
             </Link>
           )}
         </div>

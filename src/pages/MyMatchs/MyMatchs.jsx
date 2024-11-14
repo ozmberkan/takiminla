@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
+import { getAllMatches } from "~/redux/slices/matchSlice";
 import { getUsersTeams } from "~/redux/slices/teamsSlice";
 
 const MyMatchs = () => {
@@ -14,10 +15,10 @@ const MyMatchs = () => {
 
   const { user } = useSelector((store) => store.user);
 
-  const { myTeams, status } = useSelector((store) => store.teams);
+  const { myMatchs, status } = useSelector((store) => store.matches);
 
   useEffect(() => {
-    dispatch(getUsersTeams(user.uid));
+    dispatch(getAllMatches(user.uid));
   }, []);
 
   if (status === "loading") {
@@ -36,7 +37,11 @@ const MyMatchs = () => {
         Maçlarım
       </h1>
       <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-5">
-        Maçlarım..
+        {myMatchs.map((match) => (
+          <div key={match.matchID} className="bg-zinc-50 rounded-md p-3 border">
+            {match.date} - {match.address} - {match.city}
+          </div>
+        ))}
       </div>
     </motion.div>
   );

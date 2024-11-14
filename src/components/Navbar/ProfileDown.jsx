@@ -59,7 +59,7 @@ const ProfileDown = ({ user, exitHandle }) => {
           <MenuItem>
             <Link
               className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
-              to="/my-matchs"
+              to="/my-matches"
             >
               <span className="text-zinc-600">
                 <TbBuildingStadium size={22} />
@@ -70,7 +70,7 @@ const ProfileDown = ({ user, exitHandle }) => {
           <MenuItem>
             <Link
               className="text-sm font-semibold data-[focus]:text-zinc-800 data-[focus]:bg-neutral-100 text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
-              to="/my-lists"
+              to="/my-list"
             >
               <span className="text-zinc-600">
                 <TbLayoutDistributeHorizontal size={22} />
@@ -107,13 +107,13 @@ const ProfileDown = ({ user, exitHandle }) => {
                 >
                   <DisclosurePanel className="text-gray-500 w-full  mt-2 flex flex-col gap-2 origin-top transition duration-200 ease-out">
                     <Link
-                      to="/lists"
+                      to="/team-list"
                       className="text-sm font-semibold hover:bg-[#202020] hover:text-white bg-neutral-100 text-zinc-600 w-full rounded-md flex gap-x-2 px-5 py-2 items-center"
                     >
                       <TbList size={17} /> Takım İlanları
                     </Link>
                     <Link
-                      to="/user-lists"
+                      to="/user-list"
                       className="text-sm font-semibold hover:bg-[#202020] hover:text-white bg-neutral-100 text-zinc-600 w-full rounded-md flex gap-x-2 px-5 py-2 items-center"
                     >
                       <TbUsers size={17} /> Oyuncu İlanları

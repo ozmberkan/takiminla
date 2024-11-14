@@ -40,13 +40,13 @@ const Notification = () => {
                 className="text-sm font-semibold hover:bg-neutral-100  text-zinc-600 w-full py-3 rounded-xl flex gap-x-5 px-5 items-center"
               >
                 <Link to="/my-notifications">
-                  <span className="flex items-center gap-x-1">
+                  <div className="flex items-center gap-x-1">
                     <TbBell size={22} />
-                    <Link className="text-primary">
+                    <span className="text-primary">
                       {notification.fromName}
-                    </Link>{" "}
+                    </span>{" "}
                     tarafından davetiniz var!
-                  </span>
+                  </div>
                 </Link>
               </MenuItem>
             ))

@@ -22,9 +22,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import toast from "react-hot-toast";
 import PhotoModal from "~/components/UI/Modals/UpdateProfile/PhotoModal";
+import Loading from "~/components/Loading/Loading";
 
 const MyAccount = () => {
-  const { user } = useSelector((store) => store.user);
+  const { user, status } = useSelector((store) => store.user);
   const [isEditMode, setIsEditMode] = useState(false);
   const [isPhotoModal, setIsPhotoModal] = useState(false);
   const dispatch = useDispatch();
@@ -37,7 +38,6 @@ const MyAccount = () => {
   }, [dispatch, user?.uid]);
 
   useEffect(() => {
-    // `user` bilgileri yüklendiğinde formu güncelleyin
     if (user) {
       reset({
         displayName: user.displayName || "Kullanıcı",

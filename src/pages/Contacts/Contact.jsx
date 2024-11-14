@@ -40,7 +40,7 @@ const Contact = () => {
           className="flex flex-col gap-4 w-1/2  h-full"
           onSubmit={handleSubmit(sendMessage)}
         >
-          {contactInputs.map((input) => {
+          {contactInputs.map((input, i) => {
             return input.name === "content" ? (
               <div className="flex flex-col gap-1">
                 <label className="text-xs  text-zinc-600">{input.label}</label>

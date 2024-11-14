@@ -54,17 +54,17 @@ const MyLists = () => {
           <div className="flex gap-x-2">
             <button
               onClick={() => setIsCreateModal(true)}
-              className="px-4 py-2 rounded-md text-sm  bg-primary text-white flex gap-x-2 items-center"
+              className="px-4 py-2 rounded-md text-sm  bg-primary text-white flex gap-x-2 items-center border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
             >
               <TbUsersGroup />
-              Takım İçin İlan Oluştur
+              Oyuncu Arıyorum
             </button>
             <button
               onClick={() => setIsCreateUserModal(true)}
-              className="px-4 py-2 rounded-md text-sm  bg-primary text-white flex gap-x-2 items-center"
+              className="px-4 py-2 rounded-md text-sm  bg-primary text-white flex gap-x-2 items-center border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
             >
               <TbUser />
-              Oyuncu Olarak İlan Oluştur
+              Takım Arıyorum
             </button>
           </div>
         </h1>

@@ -1,4 +1,10 @@
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import React from "react";
 import toast from "react-hot-toast";
 import { TbBell } from "react-icons/tb";
@@ -15,6 +21,8 @@ const MyNotifications = () => {
       const userRef = doc(db, "users", user.uid);
       const teamsRef = doc(db, "teams", notification.teamID);
 
+      const matchesRef = doc(collection(db, "matches"));
+
       const deleteNotification = user.notifications.filter(
         (noti) => noti.notificationID !== notification.notificationID
       );
@@ -23,7 +31,14 @@ const MyNotifications = () => {
         notifications: deleteNotification,
       });
 
-      await deleteDoc(teamsRef);
+      await setDoc(matchesRef, {
+        matchID: matchesRef.id,
+        teamID: notification.teamID,
+        userID: user.uid,
+        date: notification.matchDate,
+        address: notification.matchAddress,
+        city: notification.matchCity,
+      });
 
       toast.success("Davet Kabul Edildi");
       dispatch(getUserByID(user.uid));

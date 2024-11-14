@@ -35,14 +35,26 @@ const AllList = ({ team }) => {
     try {
       const userRef = doc(db, "users", team.createdBy);
 
+      if (
+        !user.displayName ||
+        user.foot === undefined ||
+        user.position === undefined
+      ) {
+        toast.error("Önce profil bilgilerini güncellemelisin..");
+        return;
+      }
+
       const inviteContent = {
-        fromName: user.displayName,
-        fromAge: user.age,
-        fromPhoto: user.photoURL,
-        fromFoot: user.foot,
-        fromPosition: user.position,
+        fromName: user.displayName || "Unknown",
+        fromAge: user.age || "N/A",
+        fromPhoto: user.photoURL || Avatar,
+        fromFoot: user.foot || "Unknown",
+        fromPosition: user.position || "Unknown",
         fromID: user.uid,
         teamID: team.teamID,
+        matchDate: team.date,
+        matchAddress: team.address,
+        matchCity: team.city,
         notificationID: nanoid(),
       };
 
@@ -51,7 +63,6 @@ const AllList = ({ team }) => {
       });
 
       toast.success("Davet Gönderildi");
-
       dispatch(getUserByID(user.uid));
     } catch (error) {
       console.log(error);

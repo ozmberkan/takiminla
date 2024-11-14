@@ -54,12 +54,11 @@ const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
         height: user.height,
         startDate: moment(data.startDate).format("DD.MM.YYYY HH:mm"),
         endDate: moment(data.endDate).format("DD.MM.YYYY HH:mm"),
-        address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
       });
 
       toast.success("İlan başarıyla oluşturuldu..");
-      setIsCreateModal(false);
+      setIsCreateUserModal(false);
       dispatch(getUsersTeams(user.uid));
       navigate("/my-lists");
     } catch (error) {
@@ -84,7 +83,7 @@ const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
               className="text-lg font-semibold text-gray-900 flex justify-between items-center"
               id="modal-title"
             >
-              Oyuncu Olarak İlan Oluştur
+              Halısaha'da oynamak mı istiyorsun?
               <button
                 className="hover:text-primary"
                 onClick={() => setIsCreateUserModal(false)}
@@ -137,6 +136,9 @@ const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
                 <option value="sagKanat">Sağ Kanat</option>
               </select>
             </label>
+          </div>
+          <div className="w-full  text-sm col-span-2">
+            Başlangıç ve bitiş tarihi seçiniz..
           </div>
           <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
             <TbCalendar size={16} />

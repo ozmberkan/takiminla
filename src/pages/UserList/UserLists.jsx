@@ -1,19 +1,17 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { TbListDetails, TbUsers } from "react-icons/tb";
+import { TbUsers } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
-import AllList from "~/components/AllList/AllList";
-import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
-import { getAllTeams } from "~/redux/slices/teamsSlice";
+import { getAllUserList } from "~/redux/slices/userListSlice";
 
-const UserLists = () => {
+const UserList = () => {
   const dispatch = useDispatch();
-
-  const { teams, status } = useSelector((store) => store.teams);
+  const { user } = useSelector((store) => store.user);
+  const { userList, status } = useSelector((store) => store.userList);
 
   useEffect(() => {
-    dispatch(getAllTeams());
+    dispatch(getAllUserList(user.uid));
   }, []);
 
   if (status === "loading") {
@@ -32,10 +30,12 @@ const UserLists = () => {
         Oyuncu İlanları
       </h1>
       <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-4">
-        users List
+        {userList.map((user) => (
+          <div key={user.createdBy}>{user.createdName}</div>
+        ))}
       </div>
     </motion.div>
   );
 };
 
-export default UserLists;
+export default UserList;
