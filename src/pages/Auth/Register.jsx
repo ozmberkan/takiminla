@@ -2,13 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "~/redux/slices/userSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { lineSpinner } from "ldrs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerScheme } from "~/validation/scheme";
 import Logo from "~/assets/logos/logotypedark.svg";
-import { TbLock, TbMail } from "react-icons/tb";
+import { TbEye, TbEyeClosed, TbLock, TbMail } from "react-icons/tb";
 import { BsStars } from "react-icons/bs";
 
 const Register = () => {
@@ -24,12 +24,18 @@ const Register = () => {
   const navigate = useNavigate();
   lineSpinner.register();
 
+  const [hide, setHide] = useState("password");
+
   const registerHandle = (data) => {
     try {
       dispatch(registerService(data));
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const changeVisible = () => {
+    setHide(hide === "password" ? "text" : "password");
   };
 
   useEffect(() => {
@@ -96,7 +102,7 @@ const Register = () => {
             </div>
             <div className="flex flex-col gap-y-1">
               <label className="text-sm text-zinc-600">Parola</label>
-              <div className="w-full border flex items-center h-10 rounded-xl peer-focus-within:border-primary peer">
+              <div className="w-full border flex items-center h-10 rounded-xl peer-focus-within:border-primary peer pr-3">
                 <span
                   className={`text-xl flex justify-center items-center px-4 h-full transition-colors duration-500 border-r ${
                     errors.email && "text-red-600"
@@ -107,9 +113,16 @@ const Register = () => {
                 <input
                   className="h-full w-full outline-none bg-transparent pl-3"
                   placeholder="Parola"
-                  type="password"
+                  type={hide === "password" ? "password" : "text"}
                   {...register("password", { required: true })}
                 />
+                <button
+                  type="button"
+                  className="hover:text-primary"
+                  onClick={changeVisible}
+                >
+                  {hide === "password" ? <TbEye /> : <TbEyeClosed />}
+                </button>
               </div>
             </div>
 

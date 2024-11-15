@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginScheme } from "~/validation/scheme";
 import { useForm } from "react-hook-form";
@@ -8,11 +8,19 @@ import { loginService } from "~/redux/slices/userSlice";
 import toast from "react-hot-toast";
 import { lineSpinner } from "ldrs";
 import Logo from "~/assets/logos/logotypedark.svg";
-import { TbLock, TbMail } from "react-icons/tb";
+import {
+  TbEye,
+  TbEyeCancel,
+  TbEyeClosed,
+  TbLock,
+  TbMail,
+} from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import { BsStars } from "react-icons/bs";
 
 const Login = () => {
+  const [hide, setHide] = useState("password");
+
   const {
     register,
     handleSubmit,
@@ -31,6 +39,10 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const changeVisible = () => {
+    setHide(hide === "password" ? "text" : "password");
   };
 
   useEffect(() => {
@@ -90,7 +102,7 @@ const Login = () => {
             </div>
             <div className="flex flex-col gap-y-1">
               <label className="text-sm text-zinc-600">Parola</label>
-              <div className="w-full border flex items-center h-10 rounded-xl peer-focus-within:border-primary peer">
+              <div className="w-full border flex items-center h-10 rounded-xl peer-focus-within:border-primary peer pr-3">
                 <span
                   className={`text-xl flex justify-center items-center px-4 h-full transition-colors duration-500 border-r ${
                     errors.email && "text-red-600"
@@ -101,9 +113,16 @@ const Login = () => {
                 <input
                   className="h-full w-full outline-none bg-transparent pl-3"
                   placeholder="Parola"
-                  type="password"
+                  type={hide === "password" ? "password" : "text"}
                   {...register("password", { required: true })}
                 />
+                <button
+                  type="button"
+                  className="hover:text-primary"
+                  onClick={changeVisible}
+                >
+                  {hide === "password" ? <TbEye /> : <TbEyeClosed />}
+                </button>
               </div>
             </div>
 
@@ -136,7 +155,7 @@ const Login = () => {
               type="button"
               className="flex gap-x-2 items-center border px-4 py-2 rounded-xl justify-center hover:bg-zinc-100 transition-colors duration-300"
             >
-              <FcGoogle /> Google ile giriş yap
+              <FcGoogle /> Google ile devam et
             </button>
           </form>
         </div>
