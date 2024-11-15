@@ -68,13 +68,13 @@ const Home = () => {
         src={Soccer}
         className="absolute w-[1200px] -bottom-60 right-0 drop-shadow-4xl z-10"
       />
-      <motion.img
+      {/* <motion.img
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         src={DashBoard}
         className="absolute w-[1200px] -bottom-60 left-0 drop-shadow-4xl z-0 -rotate-12"
-      />
+      /> */}
       <div className=" w-full flex items-start justify-start h-[400px] container mx-auto z-20">
         <div className=" w-1/2 h-full py-12 flex flex-col gap-3">
           <h1 className="text-[80px] font-black text-primary ">

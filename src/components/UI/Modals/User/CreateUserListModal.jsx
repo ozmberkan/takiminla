@@ -60,7 +60,7 @@ const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
       toast.success("İlan başarıyla oluşturuldu..");
       setIsCreateUserModal(false);
       dispatch(getUsersTeams(user.uid));
-      navigate("/my-lists");
+      navigate("/my-list");
     } catch (error) {
       console.log(error);
     }

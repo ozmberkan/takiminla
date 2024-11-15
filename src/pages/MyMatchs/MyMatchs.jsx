@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
+import Match from "~/components/Match/Match";
 import { getAllMatches } from "~/redux/slices/matchSlice";
 import { getUsersTeams } from "~/redux/slices/teamsSlice";
 
@@ -38,9 +39,7 @@ const MyMatchs = () => {
       </h1>
       <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-5">
         {myMatchs.map((match) => (
-          <div key={match.matchID} className="bg-zinc-50 rounded-md p-3 border">
-            {match.date} - {match.address} - {match.city}
-          </div>
+          <Match match={match} />
         ))}
       </div>
     </motion.div>
