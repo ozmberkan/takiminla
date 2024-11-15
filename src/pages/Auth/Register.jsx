@@ -55,8 +55,8 @@ const Register = () => {
       <div className="w-full flex items-center ">
         <img src={Logo} className="w-44" />
       </div>
-      <div className="w-full  flex-grow p-3 flex justify-center items-center">
-        <div className=" max-w-[500px] h-full p-2 flex flex-col gap-y-3">
+      <div className="w-full  h-[600px] p-3 flex justify-center items-center">
+        <div className=" max-w-[500px] h-full p-2 flex flex-col justify-center gap-y-3">
           <div className="flex flex-col gap-y-2 mb-3">
             <h1 className="font-black text-3xl text-primary relative">
               Hoş geldin
