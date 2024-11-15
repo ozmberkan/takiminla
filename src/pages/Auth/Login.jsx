@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { loginScheme } from "~/validation/scheme";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 import { loginService } from "~/redux/slices/userSlice";
 import toast from "react-hot-toast";
-import { TbLock, TbMail, TbUser } from "react-icons/tb";
 import { lineSpinner } from "ldrs";
+import Logo from "~/assets/logos/logotypedark.svg";
+import { TbLock, TbMail } from "react-icons/tb";
+import { FcGoogle } from "react-icons/fc";
+import { BsStars } from "react-icons/bs";
 
 const Login = () => {
   const {
@@ -44,93 +46,100 @@ const Login = () => {
   }, [status]);
 
   return (
-    <div className="flex-grow bg-authBg bg-cover bg-center min-h-screen flex justify-center items-center">
-      <div className=" bg-white rounded-xl border w-[600px]  shadow-primary flex flex-col p-5">
-        <div className="w-full pb-6 border-b flex justify-center items-center text-center flex-col gap-3">
-          <h1 className="text-4xl font-black text-primary">Oturum Aç</h1>
-          <span className="text-zinc-600 w-2/3">
-            Oturum açarak sende kendine takım bulabilir ya da ilan
-            oluşturabilirsin.
-          </span>
-        </div>
-        <form
-          className="w-full  p-3 mt-5 h-full flex justify-start items-center flex-col gap-3"
-          onSubmit={handleSubmit(loginHandle)}
-        >
-          <div className="flex flex-col gap-1 w-2/3">
-            <label className="text-sm text-zinc-500">E-Posta</label>
-            <div
-              className={`px-4 h-12 rounded-md border outline-none flex justify-start gap-x-3 items-center transition-colors duration-500 ${
-                errors.email && "border-red-500"
-              } `}
-            >
-              <TbMail
-                size={20}
-                className={
-                  errors.email && "text-red-500 transition-colors duration-300"
-                }
-              />
-              <input
-                type="text"
-                placeholder="E-Posta giriniz.."
-                className="w-full outline-none h-full"
-                {...register("email")}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-1 w-2/3">
-            <label className="text-sm text-zinc-500">Parola</label>
-            <div
-              className={`px-4 h-12 rounded-md border outline-none flex justify-start gap-x-3 items-center transition-colors duration-500 ${
-                errors.password && "border-red-500"
-              } `}
-            >
-              <TbLock
-                size={20}
-                className={
-                  errors.password &&
-                  "text-red-500 transition-colors duration-300"
-                }
-              />
-              <input
-                type="password"
-                placeholder="Parola giriniz.."
-                className="w-full outline-none h-full"
-                {...register("password")}
-              />
-            </div>
-          </div>
-          <div className="w-2/3 flex justify-between items-center">
-            <Link to="/auth/register" className="text-sm hover:underline">
-              Hesabın yok mu?
-            </Link>
-            <Link className="text-sm hover:underline">Parolamı unuttum</Link>
-          </div>
-          <button
-            type="submit"
-            className="bg-primary font-semibold flex justify-center items-center hover:bg-primaryDark text-white px-4 h-10  rounded-md w-2/3"
-          >
-            {status === "loading" ? (
-              <span className=" w-full p-0 h-10 flex justify-center items-center">
-                <l-line-spinner size="25" stroke="3" speed="1" color="white" />
+    <div className="flex flex-col justify-start gap-12 items-center p-8 min-h-screen">
+      <div className="w-full flex items-center ">
+        <img src={Logo} className="w-44" />
+      </div>
+      <div className="w-full  flex-grow p-3 flex justify-center items-center">
+        <div className=" max-w-[500px] h-full p-2 flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-2 mb-3">
+            <h1 className="font-black text-3xl text-primary relative">
+              Yeniden hoş geldin!
+              <span className="absolute top-0 text-primaryDark ">
+                <BsStars size={15} />
               </span>
-            ) : (
-              "Oturum aç"
-            )}
-          </button>
-          <div className="relative flex items-center w-2/3 my-5">
-            <div className="h-px w-full bg-zinc-500"></div>
-            <span className="absolute left-1/2 -translate-x-1/2 bg-white px-2 text-zinc-500">
-              YA DA
-            </span>
+            </h1>
+
+            <p className="text-sm text-zinc-500">
+              Halısaha planında eğer oyuncuya ihtiyacın varsa ya da oyuncu olmak
+              istiyorsan bilgilerini girerek sisteme ücretsiz bir şekilde
+              erişebilirsin.
+            </p>
           </div>
-          <button
-            type="button"
-            className="flex items-center gap-x-2 w-2/3 bg-white hover:bg-zinc-50 border px-4 py-2 rounded-md justify-center font-semibold text-lg"
+          <form
+            className="flex flex-col  gap-y-3"
+            onSubmit={handleSubmit(loginHandle)}
           >
-            <FcGoogle size={20} /> Google
-          </button>
-        </form>
+            <div className="flex flex-col gap-y-1">
+              <label className="text-sm text-zinc-600">E-Posta</label>
+              <div className="w-full border flex items-center  h-10 rounded-xl">
+                <span
+                  className={`text-xl flex justify-center items-center px-4 h-full transition-colors duration-500 border-r ${
+                    errors.email && "text-red-600"
+                  }`}
+                >
+                  <TbMail size={20} />
+                </span>
+                <input
+                  className="h-full w-full outline-none bg-transparent pl-3"
+                  placeholder="E-Posta"
+                  type="email"
+                  {...register("email", { required: true })}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-y-1">
+              <label className="text-sm text-zinc-600">Parola</label>
+              <div className="w-full border flex items-center h-10 rounded-xl peer-focus-within:border-primary peer">
+                <span
+                  className={`text-xl flex justify-center items-center px-4 h-full transition-colors duration-500 border-r ${
+                    errors.email && "text-red-600"
+                  }`}
+                >
+                  <TbLock size={20} />
+                </span>
+                <input
+                  className="h-full w-full outline-none bg-transparent pl-3"
+                  placeholder="Parola"
+                  type="password"
+                  {...register("password", { required: true })}
+                />
+              </div>
+            </div>
+
+            <div className="w-full  p-1 flex justify-between items-center">
+              <Link className="text-sm hover:underline text-neutral-700">
+                Parolamı unuttum
+              </Link>
+              <Link
+                to="/auth/register"
+                className="text-sm hover:underline text-neutral-700"
+              >
+                Hesabın yok mu?
+              </Link>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-primary rounded-xl text-white px-4 py-2 font-semibold hover:shadow-[inset_-12px_-8px_40px_#46464670] transition-shadow duration-300"
+            >
+              Oturum aç
+            </button>
+
+            <div className="flex items-center w-full">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="px-4 text-gray-500 text-sm">YA DA</span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <button
+              type="button"
+              className="flex gap-x-2 items-center border px-4 py-2 rounded-xl justify-center hover:bg-zinc-100 transition-colors duration-300"
+            >
+              <FcGoogle /> Google ile giriş yap
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
