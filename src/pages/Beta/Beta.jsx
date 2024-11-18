@@ -7,21 +7,22 @@ const Beta = () => {
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
         Erken Erişim
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+      <div className="container mx-auto rounded-xl flex flex-col gap-4">
         <p className="mt-1">
-          <strong>Takımınla</strong> platformuna erken erişim fırsatıyla,
-          sporseverlere ilk kullanıcılar arasında yer alma ve uygulamanın
-          gelişim sürecine katkıda bulunma imkanı tanıyoruz. Erken erişim
-          sürümünde, platformun temel özelliklerini deneyimleyebilir, maç
+          <strong className="text-primary">Takımınla</strong> platformuna erken
+          erişim fırsatıyla, sporseverlere ilk kullanıcılar arasında yer alma ve
+          uygulamanın gelişim sürecine katkıda bulunma imkanı tanıyoruz. Erken
+          erişim sürümünde, platformun temel özelliklerini deneyimleyebilir, maç
           düzenleme ve oyuncu bulma gibi hizmetleri test edebilirsiniz.
           Kullanıcı geri bildirimleriniz, platformumuzu geliştirmemize ve
           sizlere en iyi futbol deneyimini sunmamıza yardımcı olacak.
         </p>
         <p className="mt-2">
           Erken erişime katılarak, futbol topluluğumuzun bir parçası olun ve bu
-          yolculuğa bizimle birlikte başlayın. <strong>Takımınla</strong> ile
-          futbolun heyecanını ilk deneyimleyenlerden biri olun ve her maçı
-          unutulmaz kılın!
+          yolculuğa bizimle birlikte başlayın.{" "}
+          <strong className="text-primary">Takımınla</strong> ile futbolun
+          heyecanını ilk deneyimleyenlerden biri olun ve her maçı unutulmaz
+          kılın!
         </p>
         <div className="mt-2">
           <Link

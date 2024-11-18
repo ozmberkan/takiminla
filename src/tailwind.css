@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-inter bg-zinc-50 scroll-smooth;
+  @apply font-inter  scroll-smooth;
 }
 /* Scrollbar genişliği */
 ::-webkit-scrollbar {
@@ -12,83 +12,15 @@ body {
 
 /* Scrollbar arka planı */
 ::-webkit-scrollbar-track {
-  background: #2dc552;
+  background: #fff;
 }
 
 /* Scrollbar tutacağı */
 ::-webkit-scrollbar-thumb {
-  background-color: #fff;
+  background-color: #2dc552;
 }
 
 /* Hover durumunda scrollbar tutacağı */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-UltraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-ExtraBold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Bold.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Gilroy";
-  src: url("./assets/fonts/Gilroy-Black.ttf") format("truetype");
-  font-weight: 950;
-  font-style: normal;
+  background-color: #0B3B17;
 }

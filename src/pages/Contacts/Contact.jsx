@@ -35,7 +35,7 @@ const Contact = () => {
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
         İletişim
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex items-start justify-start gap-4">
+      <div className=" container mx-auto rounded-xl  flex items-start justify-start gap-4">
         <form
           className="flex flex-col gap-4 w-1/2  h-full"
           onSubmit={handleSubmit(sendMessage)}
@@ -74,7 +74,10 @@ const Contact = () => {
           </button>
         </form>
         <div className="flex justify-center items-center gap-3  h-full p-3 w-1/2">
-          <img src={contactSVG} className="w-2/3  object-cover" />
+          <img
+            src={contactSVG}
+            className="w-2/3  object-cover drop-shadow-lg"
+          />
         </div>
       </div>
     </div>

@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const About = () => {
-
   return (
     <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-screen flex flex-col justify-start items-start relative overflow-hidden">
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
         Hakkımızda
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+      <div className=" container mx-auto rounded-xl flex flex-col gap-4">
         <div className="flex flex-row gap-x-2 w-full">
           Takımınla olarak, sporseverleri bir araya getirerek dostluk ve
           rekabetin iç içe geçtiği bir platform sunuyoruz. Futbol tutkunlarının

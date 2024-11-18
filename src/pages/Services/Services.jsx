@@ -6,7 +6,7 @@ const Services = () => {
       <h1 className="container mx-auto text-3xl font-semibold text-zinc-800 mb-5 mt-12 border-b pb-5">
         Hizmetlerimiz
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+      <div className=" container mx-auto rounded-xl flex flex-col gap-4">
         <ul className="text-base text-zinc-700 flex flex-col gap-3">
           <li>
             <strong>Maç Düzenleme</strong>: Kolayca kendi maçınızı organize edin

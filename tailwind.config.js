@@ -21,7 +21,7 @@ export default {
         ],
       },
       backgroundImage: {
-        mainBg: "url('/src/assets/homePage.svg')",
+        mainBg: "url('/src/assets/mainBg.svg')",
         authBg: "url('/src/assets/authPage.svg')",
       },
     },

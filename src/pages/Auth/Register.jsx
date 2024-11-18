@@ -53,7 +53,9 @@ const Register = () => {
   return (
     <div className="flex flex-col justify-start gap-12 items-center p-8 min-h-screen">
       <div className="w-full flex items-center ">
-        <img src={Logo} className="w-44" />
+        <Link to="/">
+          <img src={Logo} className="w-44" />
+        </Link>
       </div>
       <div className="w-full  h-[600px] p-3 flex justify-center items-center">
         <div className=" max-w-[500px] h-full p-2 flex flex-col justify-center gap-y-3">

@@ -60,7 +60,7 @@ export const contactInputs = [
 ];
 
 export const navbarLinks = [
-  { id: 1, title: "Hakkımızda", to: "/about" },
-  { id: 2, title: "Hizmetler", to: "/services" },
+  { id: 1, title: "Hizmetler", to: "/services" },
+  { id: 2, title: "Hakkımızda", to: "/about" },
   { id: 3, title: "İletişim", to: "/contact" },
 ];

@@ -4,13 +4,14 @@ import Logo from "~/assets/logos/logotypedark.svg";
 
 const Terms = () => {
   return (
-    <div className="flex flex-col justify-start gap-12 items-center p-8 min-h-screen bg-gray-100">
-      {/* Logo Section */}
+    <div className="flex flex-col justify-start gap-12 items-center p-8 min-h-screen bg-white">
       <div className="w-full flex items-center justify-between">
-        <img src={Logo} className="w-44" alt="Logo" />
+        <Link to="/">
+          <img src={Logo} className="w-44" />
+        </Link>
         <Link
           to="/auth/register"
-          className=" bg-primary text-white px-4 py-1 rounded-xl"
+          className=" bg-primary text-white px-4 py-1 rounded-md"
         >
           Kayıt ol
         </Link>
@@ -22,7 +23,7 @@ const Terms = () => {
           <h1 className="text-2xl font-bold text-left text-primary ">
             Hizmet şartları
           </h1>
-          <p>
+          <p className="text-sm">
             Bu kullanım koşulları, Takımınla platformunun (bundan sonra
             "Platform") kullanımına ilişkin kuralları belirler. Platformu
             kullanarak, aşağıdaki şartları ve koşulları kabul etmiş

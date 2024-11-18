@@ -7,7 +7,7 @@ import { auth } from "~/firebase/firebase";
 import toast from "react-hot-toast";
 import CreateTeamModal from "../UI/Modals/CreateTeamModal";
 
-import LogoWhite from "~/assets/logos/logodark.svg";
+import Logo from "~/assets/logos/logotypedark.svg";
 import Notification from "./Notification";
 import ProfileDown from "./ProfileDown";
 import { navbarLinks } from "~/data/data";
@@ -35,17 +35,14 @@ const Navbar = () => {
       {isCreateModal && (
         <CreateTeamModal setIsCreateModal={setIsCreateModal} user={user} />
       )}
-      <div className="w-full py-5 flex justify-between items-center container drop-shadow-2xl mx-auto ">
-        <div className="flex gap-x-2 items-center">
+      <div className="w-full py-5 flex justify-between items-center container  mx-auto ">
+        <div className="flex gap-x-2 items-center ">
           <Link to="/" className="font-black text-xl text-primary">
-            <img src={LogoWhite} className="w-52" />
+            <img src={Logo} className="w-44" />
           </Link>
-          <span className="text-xs uppercase font-bold px-2 py-1 rounded-full bg-primary/10 border border-primary text-primary">
-            beta
-          </span>
         </div>
 
-        <div className="flex gap-x-5 justify-center items-center">
+        <div className="flex gap-x-5 justify-center items-center ">
           {navbarLinks.map((link) => (
             <Link
               key={link.id}
@@ -65,7 +62,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           {user ? (
             <div className="flex items-center gap-x-3">
               <button

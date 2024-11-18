@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import Typewriter from "typewriter-effect";
-import { TbCircleArrowRightFilled } from "react-icons/tb";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateDoc, doc } from "firebase/firestore";
@@ -8,14 +6,14 @@ import { db } from "~/firebase/firebase";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
-import Soccer from "~/assets/soccer.svg";
-import DashBoard from "~/assets/artboard.png";
 import { getUserByID } from "~/redux/slices/userSlice";
 import { motion } from "framer-motion";
 
 const Home = () => {
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+
+  const text = "Hoş geldin".split(" ");
 
   useEffect(() => {
     if (!user || user.isLoggedOn === true) return;
@@ -60,31 +58,29 @@ const Home = () => {
   }, [user]);
 
   return (
-    <div className="bg-mainBg bg-no-repeat bg-center bg-cover h-[850px] flex justify-start items-start relative overflow-hidden">
-      <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        src={Soccer}
-        className="absolute w-[1200px] -bottom-60 right-0 drop-shadow-4xl z-10"
-      />
-      {/* <motion.img
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        src={DashBoard}
-        className="absolute w-[1200px] -bottom-60 left-0 drop-shadow-4xl z-0 -rotate-12"
-      /> */}
-      <div className=" w-full flex items-start justify-start h-[400px] container mx-auto z-20">
-        <div className=" w-1/2 h-full py-12 flex flex-col gap-3">
-          <h1 className="text-[80px] font-black text-primary ">
+    <div className="bg-mainBg bg-no-repeat bg-bottom bg-cover h-[850px] flex justify-center items-center relative overflow-hidden">
+      <div className=" w-full flex items-center justify-center h-[400px] container mx-auto z-20">
+        <div className=" w-full h-full py-12 flex flex-col justify-center items-center gap-3">
+          <h1 className="text-[100px] font-black tracking-tighter text-primaryDark ">
             {user
               ? user.displayName
                 ? user.displayName
                 : "Kullanıcı"
-              : "Hoş geldin"}
+              : text.map((el, i) => (
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.8,
+                      delay: i / 10,
+                    }}
+                    key={i}
+                  >
+                    {el}{" "}
+                  </motion.span>
+                ))}
           </h1>
-          <p className="text-zinc-600 font-medium">
+          <p className="text-zinc-800 w-1/2 font-medium text-center">
             Halısaha maçlarınızı kolayca organize edin ve arkadaşlarınızla
             keyifli vakit geçirin. Eğer bir takımınız yoksa, takım arayanlar ile
             bir araya gelerek yeni bir takım oluşturabilirsiniz. Hemen başlamak
@@ -94,14 +90,14 @@ const Home = () => {
             {user ? (
               <Link
                 to="/my-account"
-                className=" profile-btn font-semibold inline-flex px-8 py-1 rounded-full bg-primary text-white text-sm mt-3"
+                className=" profile-btn font-semibold inline-flex px-8 py-1 rounded-full bg-white text-primaryDark text-sm mt-3 hover:bg-primaryDark hover:text-white transition-colors duration-300"
               >
                 Profilim
               </Link>
             ) : (
               <Link
                 to="/auth/register"
-                className=" inline-flex font-semibold px-8 py-1 rounded-full bg-primary text-white text-sm mt-3 border border-transparent hover:border-primary hover:bg-white hover:text-primary transition-colors duration-200"
+                className=" inline-flex font-semibold px-8 py-1 rounded-full bg-white text-primaryDark text-sm mt-3 hover:bg-primaryDark hover:text-white transition-colors duration-300"
               >
                 Hemen Başla
               </Link>
