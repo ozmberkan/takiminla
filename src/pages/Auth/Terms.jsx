@@ -28,7 +28,8 @@ const Terms = () => {
             "Platform") kullanımına ilişkin kuralları belirler. Platformu
             kullanarak, aşağıdaki şartları ve koşulları kabul etmiş
             sayılırsınız. Bu koşulları kabul etmiyorsanız, lütfen Platformu
-            kullanmayınız.
+            kullanmayınız. İletişim bilgileriniz davet kabulü sırasında karşı
+            taraf ile paylaşılacaktır.
           </p>
         </div>
         <div className="text-gray-700 text-sm space-y-2 ">

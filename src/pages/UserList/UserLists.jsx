@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { TbUsers } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
+import UserListBox from "~/components/List/UserListBox";
 import Loading from "~/components/Loading/Loading";
 import { getAllUserList } from "~/redux/slices/userListSlice";
 
@@ -29,9 +30,9 @@ const UserList = () => {
         <TbUsers />
         Oyuncu İlanları
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-4">
-        {userList.map((user) => (
-          <div key={user.createdBy}>{user.createdName}</div>
+      <div className="container mx-auto  grid grid-cols-2 gap-4">
+        {userList.map((userL, i) => (
+          <UserListBox key={i} userL={userL} />
         ))}
       </div>
     </motion.div>

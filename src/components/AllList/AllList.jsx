@@ -5,9 +5,13 @@ import { PiCityLight } from "react-icons/pi";
 import Avatar from "~/assets/avatar.jpg";
 import {
   TbCalendar,
+  TbCirclePlus,
   TbCurrentLocation,
   TbEdit,
   TbLocation,
+  TbLocationCode,
+  TbMapSearch,
+  TbShoe,
   TbTrash,
   TbUser,
 } from "react-icons/tb";
@@ -78,55 +82,58 @@ const AllList = ({ team }) => {
 
   return (
     <>
-      <div className="w-full rounded-xl border p-3 flex flex-col gap-3 shadow-md">
-        <div className="w-full flex justify-between items-center border bg-zinc-500  text-zinc-200 px-4 py-2 rounded-md">
-          <span className="flex gap-x-1 items-center font-medium">
-            <PiCityLight />
-            {city}
-          </span>
-          <span className="flex gap-x-1 items-center font-medium">
-            <TbCalendar />
-            {date}
-          </span>
-        </div>
-        <div className="w-full bg-zinc-100 border rounded-md px-4 py-2 flex flex-col gap-3">
-          <div className="flex gap-x-1 items-center justify-between  border-b w-full pb-3">
-            <div className="flex items-center gap-x-3">
+      <div className="w-full rounded-lg shadow border flex flex-col  ">
+        <div className="w-full p-3  flex justify-between items-center">
+          <div className="flex items-center justify-between gap-x-2 w-full  pb-2 border-b ">
+            <div className="flex items-center gap-x-2">
               <img
                 src={createdPhoto ? createdPhoto : Avatar}
-                className="w-10 h-10 rounded-md shadow"
+                className="w-10 h-10 rounded-md object-cover"
               />
-              <span> {createdName ? createdName : "Kullanıcı"}</span>
+              <div className="flex flex-col">
+                <span className="text-sm text-zinc-700">Organizatör</span>
+                <span className="text-xs font-medium text-primaryDark">
+                  {createdName}
+                </span>
+              </div>
             </div>
-            <div className="flex gap-x-2 items-center">
-              <button
-                onClick={() => sendInvite(team)}
-                className="px-4 py-2 rounded-md text-xs  bg-primary/10 border border-primary font-bold hover:bg-primary hover:text-white transition-colors duration-300 text-primary"
-              >
-                Davet Gönder
-              </button>
-              <button
-                className="px-4 py-2 rounded-md text-xs flex items-center gap-x-1  bg-blue-500/10 border border-blue-500 font-bold hover:bg-blue-500 hover:text-white transition-colors duration-300 text-blue-500"
-                onClick={openGoogleMaps}
-              >
-                <TbLocation />
-                Lokasyonu Gör
-              </button>
-            </div>
+            <span className="bg-zinc-50 border px-4 py-1 rounded-md text-zinc-600 text-xs">
+              {date}
+            </span>
           </div>
-          <p className="flex gap-x-1 items-center">
-            <TbLocation />
-            {address}
-          </p>
-          <p className="flex gap-x-1 items-center">
+        </div>
+        <div className="p-3  grid grid-cols-1 gap-3">
+          <div className="flex items-center gap-x-2">
             <TbCurrentLocation />
-            {position === "forvet" && "Forvet"}
-            {position === "kaleci" && "Kaleci"}
-            {position === "ortaSaha" && "Orta Saha"}
-            {position === "defans" && "Defans"}
-            {position === "solKanat" && "Sol Kanat"}
-            {position === "sagKanat" && "Sağ Kanat"}
-          </p>
+            <span className="font-medium text-sm">
+              {position === "ortaSaha" && "Orta Saha"}
+              {position === "defans" && "Defans"}
+              {position === "forvet" && "Forvet"}
+              {position === "kaleci" && "Kaleci"}
+              {position === "sagKanat" && "Sağ Kanat"}
+              {position === "solKanat" && "Sol Kanat"}
+            </span>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <PiCityLight />
+            <span className="font-medium text-sm">{city}</span>
+          </div>
+        </div>
+        <div className="w-full p-3 bg-neutral-50 rounded-b-lg flex justify-end items-center gap-x-2">
+          <button
+            onClick={openGoogleMaps}
+            className="px-4 py-1 bg-sky-50 border hover:shadow-md transition-shadow border-sky-600 text-sky-600 rounded-md flex items-center gap-x-1 text-sm"
+          >
+            <TbMapSearch size={17} />
+            Konumu Görüntüle
+          </button>
+          <button
+            onClick={() => sendInvite(team)}
+            className="px-4 py-1 bg-emerald-50 border hover:shadow-md transition-shadow border-emerald-600 text-emerald-600 rounded-md flex items-center gap-x-1 text-sm"
+          >
+            <TbCirclePlus size={17} />
+            Davet Gönder
+          </button>
         </div>
       </div>
     </>

@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { TbListDetails } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import AllList from "~/components/AllList/AllList";
-import List from "~/components/List/List";
 import Loading from "~/components/Loading/Loading";
 import { getAllTeams } from "~/redux/slices/teamsSlice";
 
@@ -31,7 +30,7 @@ const Lists = () => {
         <TbListDetails />
         Takım İlanları
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-4">
+      <div className="container mx-auto rounded-xl  grid grid-cols-2 gap-4">
         {teams.length > 0 ? (
           teams.map((team) => <AllList key={team.teamID} team={team} />)
         ) : (
