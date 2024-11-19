@@ -6,7 +6,7 @@ const AuthLayout = () => {
   return (
     <AuthContainer>
       <Outlet />
-      <Toaster position="top-right" />
+      <Toaster position="top-left" />
     </AuthContainer>
   );
 };

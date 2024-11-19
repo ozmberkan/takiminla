@@ -37,7 +37,7 @@ const MyMatchs = () => {
         <TbBuildingStadium />
         Maçlarım
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-5">
+      <div className=" container mx-auto rounded-xl grid grid-cols-2 gap-5">
         {myMatchs.map((match) => (
           <Match match={match} />
         ))}

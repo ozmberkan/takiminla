@@ -7,10 +7,23 @@ import {
 } from "firebase/firestore";
 import React from "react";
 import toast from "react-hot-toast";
-import { TbBell } from "react-icons/tb";
+import {
+  TbBell,
+  TbCurrentLocation,
+  TbFilterCancel,
+  TbShoe,
+  TbUserScan,
+} from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { db } from "~/firebase/firebase";
 import { getUserByID } from "~/redux/slices/userSlice";
+import moment from "moment";
+import "moment/locale/tr.js";
+import { FiCheck } from "react-icons/fi";
+import { FcCancel } from "react-icons/fc";
+
+moment.locale("tr");
+React;
 
 const MyNotifications = () => {
   const { user } = useSelector((store) => store.user);
@@ -72,49 +85,64 @@ const MyNotifications = () => {
         <TbBell />
         Bildirimlerim
       </h1>
-      <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
+      <div className=" container mx-auto rounded-xl grid grid-cols-2 gap-4">
         {user.notifications.length > 0 ? (
           user.notifications.map((notification) => (
-            <div
-              key={notification.notificationID}
-              className="px-4 py-2 rounded-md bg-zinc-50 border flex justify-between items-center"
-            >
-              <div className="border flex flex-col gap-2 px-5 py-2 rounded-md bg-white">
+            <div key={notification.notificationID} className="rounded-xl">
+              <div className="border flex  gap-2 p-3 rounded-md bg-white ">
                 {" "}
-                <div className="flex items-center gap-x-3 pb-2 border-b">
-                  <img
-                    src={notification.fromPhoto}
-                    className="w-10 h-10 rounded-md"
-                  />
-                  <span className="text-zinc-700 font-semibold">
-                    {notification.fromName}
-                  </span>{" "}
+                <div className="flex gap-x-3 w-full justify-between items-center">
+                  <div className="relative flex gap-x-2 items-center">
+                    <img
+                      src={notification.fromPhoto}
+                      className="w-14 h-full rounded-md"
+                    />
+                    <span className="absolute -top-0.5 -left-0.5 border bg-red-500 rounded-full w-3 h-3"></span>
+                    <div className="flex flex-col ">
+                      <span className="text-zinc-700 text-sm ">
+                        <strong> {notification.fromName}</strong> size bir davet
+                        gönderdi
+                      </span>{" "}
+                      <span className="text-xs text-zinc-500">
+                        {moment(
+                          notification.notificationDate,
+                          "DD.MM.YYYY HH:mm"
+                        )
+                          .locale("tr")
+                          .fromNow()}
+                      </span>
+                      <div className="flex gap-x-2 items-center">
+                        <span className="px-3 py-0.5 rounded-md border bg-neutral-100 border-neutral-300 text-xs flex items-center gap-x-1">
+                          <TbUserScan />
+                          {notification.fromAge}
+                        </span>
+                        <span className="px-3 py-0.5 rounded-md border bg-neutral-100 border-neutral-300 text-xs flex items-center gap-x-1">
+                          <TbShoe />
+                          {notification.fromFoot}
+                        </span>
+                        <span className="px-3 py-0.5 rounded-md border bg-neutral-100 border-neutral-300 text-xs flex items-center gap-x-1">
+                          <TbCurrentLocation />
+                          {notification.fromPosition}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center gap-y-2 text-xs">
+                    <button
+                      onClick={() => confirmInvite(notification)}
+                      className="flex items-center w-full gap-x-1 bg-primary text-green-100 px-4 py-1 rounded-md"
+                    >
+                      <FiCheck /> Daveti Kabul Et
+                    </button>
+                    <button
+                      onClick={() => cancelInvite(notification)}
+                      className="flex items-center w-full gap-x-1 bg-red-300 text-red-700 px-4 py-1 rounded-md"
+                    >
+                      <FcCancel /> Daveti Reddet
+                    </button>
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-5">
-                  <span className="text-zinc-700 bg-zinc-50 border rounded-md flex justify-center items-center">
-                    {notification.fromAge}
-                  </span>{" "}
-                  <span className="text-zinc-700 bg-zinc-50 border rounded-md flex justify-center items-center">
-                    {notification.fromFoot}
-                  </span>{" "}
-                  <span className="text-zinc-700 bg-zinc-50 border rounded-md flex justify-center items-center">
-                    {notification.fromPosition}
-                  </span>
-                </div>
-              </div>
-              <div className="flex gap-x-3 items-center">
-                <button
-                  onClick={() => confirmInvite(notification)}
-                  className="px-3 py-1 rounded-md bg-primary/10 text-primary border border-primary text-sm"
-                >
-                  Kabul Et
-                </button>
-                <button
-                  onClick={() => cancelInvite(notification)}
-                  className="px-3 py-1 rounded-md bg-red-600/10 text-red-600 border border-red-600 text-sm"
-                >
-                  Reddet
-                </button>
               </div>
             </div>
           ))

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "~/redux/slices/userSlice";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { lineSpinner } from "ldrs";
+import { lineSpinner, ring2 } from "ldrs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerScheme } from "~/validation/scheme";
 import Logo from "~/assets/logos/logotypedark.svg";
@@ -23,6 +23,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   lineSpinner.register();
+  ring2.register();
 
   const [hide, setHide] = useState("password");
 
@@ -139,9 +140,20 @@ const Register = () => {
 
             <button
               type="submit"
-              className="bg-primary rounded-xl text-white px-4 py-2 font-semibold hover:shadow-[inset_-12px_-8px_40px_#46464670] transition-shadow duration-300"
+              className="bg-primary flex justify-center items-center rounded-xl text-white px-4 py-2 font-semibold hover:shadow-[inset_-12px_-8px_40px_#46464670] transition-shadow duration-300"
             >
-              Kayıt ol
+              {status === "loading" ? (
+                <l-ring-2
+                  size="23"
+                  stroke="4"
+                  stroke-length="0.25"
+                  bg-opacity="0.1"
+                  speed="0.8"
+                  color="white"
+                />
+              ) : (
+                "Kayıt Ol"
+              )}
             </button>
           </form>
         </div>

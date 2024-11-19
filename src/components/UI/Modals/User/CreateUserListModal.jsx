@@ -12,6 +12,7 @@ import {
   TbTemplate,
   TbUser,
 } from "react-icons/tb";
+
 import { useDispatch } from "react-redux";
 import { db } from "~/firebase/firebase";
 import { getUsersTeams } from "~/redux/slices/teamsSlice";
@@ -23,10 +24,14 @@ import { useNavigate } from "react-router-dom";
 const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
   const modalRoot = document.getElementById("root-modal");
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const currentDate = moment().format("YYYY-MM-DDTHH:mm");
+  const startDate = watch("startDate");
+  const endDate = watch("endDate");
 
   const createHandle = async (data) => {
     try {
@@ -146,11 +151,16 @@ const CreateUserListModal = ({ setIsCreateUserModal, user }) => {
               type="datetime-local"
               {...register("startDate")}
               className="w-full outline-none px-4"
+              min={currentDate}
             />
           </div>
           <div className="flex justify-start items-center h-10  bg-white border rounded-md pl-4 col-span-2 ">
             <TbCalendar size={16} {...register("endDate")} />
-            <input type="datetime-local" className="w-full outline-none px-4" />
+            <input
+              type="datetime-local"
+              className="w-full outline-none px-4"
+              min={currentDate}
+            />
           </div>
 
           <div className="col-span-2">

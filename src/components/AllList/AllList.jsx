@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { db } from "~/firebase/firebase";
 import { getUserByID } from "~/redux/slices/userSlice";
 import { nanoid } from "nanoid";
+import moment from "moment";
 
 const AllList = ({ team }) => {
   const { user } = useSelector((store) => store.user);
@@ -60,6 +61,7 @@ const AllList = ({ team }) => {
         matchAddress: team.address,
         matchCity: team.city,
         notificationID: nanoid(),
+        notificationDate: moment().format("DD.MM.YYYY HH:mm"),
       };
 
       await updateDoc(userRef, {

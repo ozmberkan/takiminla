@@ -18,8 +18,12 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { BsStars } from "react-icons/bs";
 
+import { ring2 } from "ldrs";
+
 const Login = () => {
   const [hide, setHide] = useState("password");
+  const [loading, setLoading] = useState(false);
+  ring2.register();
 
   const alertGoogle = () => {
     toast.error("Google ile giriş şu an için aktif değil.", {
@@ -48,10 +52,13 @@ const Login = () => {
   const { status } = useSelector((store) => store.user);
 
   const loginHandle = (data) => {
+    setLoading(true);
     try {
       dispatch(loginService(data));
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -159,9 +166,20 @@ const Login = () => {
 
             <button
               type="submit"
-              className="bg-primary rounded-xl text-white px-4 py-2 font-semibold hover:shadow-[inset_-12px_-8px_40px_#46464670] transition-shadow duration-300"
+              className="bg-primary flex justify-center items-center rounded-xl text-white px-4 py-2 font-semibold hover:shadow-[inset_-12px_-8px_40px_#46464670] transition-shadow duration-300"
             >
-              Oturum aç
+              {status === "loading" ? (
+                <l-ring-2
+                  size="23"
+                  stroke="4"
+                  stroke-length="0.25"
+                  bg-opacity="0.1"
+                  speed="0.8"
+                  color="white"
+                />
+              ) : (
+                "Giriş yap"
+              )}
             </button>
 
             <div className="flex items-center w-full">
