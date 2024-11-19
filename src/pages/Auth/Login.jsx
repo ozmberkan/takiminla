@@ -21,6 +21,20 @@ import { BsStars } from "react-icons/bs";
 const Login = () => {
   const [hide, setHide] = useState("password");
 
+  const alertGoogle = () => {
+    toast.error("Google ile giriş şu an için aktif değil.", {
+      style: {
+        borderRadius: "10px",
+
+        color: "#202020",
+      },
+      iconTheme: {
+        primary: "#1976D2",
+        secondary: "#FFFAEE",
+      },
+    });
+  };
+
   const {
     register,
     handleSubmit,
@@ -158,6 +172,7 @@ const Login = () => {
 
             <button
               type="button"
+              onClick={alertGoogle}
               className="flex gap-x-2 items-center border px-4 py-2 rounded-xl justify-center hover:bg-zinc-100 transition-colors duration-300"
             >
               <FcGoogle /> Google ile devam et

@@ -46,7 +46,7 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
         city: data.city,
         createdBy: user.uid,
         createdName: user.displayName,
-        createdPhoto: user?.photoURL,
+        createdPhoto: user?.photoURL ? user?.photoURL : "",
         date: moment(selectedDate).format("DD.MM.YYYY HH:mm"),
         address: data.address,
         createdAt: moment().format("DD.MM.YYYY HH:mm"),
@@ -55,9 +55,10 @@ const CreateTeamModal = ({ setIsCreateModal, user }) => {
       toast.success("İlan başarıyla oluşturuldu..");
       setIsCreateModal(false);
       dispatch(getUsersTeams(user.uid));
-      navigate("/my-lists");
+      navigate("/my-list");
     } catch (error) {
       console.log(error);
+      toast.error("İlan oluştururken profilini tamamlandığından emin ol! ");
     }
   };
 

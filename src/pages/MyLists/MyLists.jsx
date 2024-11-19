@@ -68,7 +68,7 @@ const MyLists = () => {
             </button>
           </div>
         </h1>
-        <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 grid grid-cols-2 gap-5">
+        <div className="container mx-auto rounded-xl grid grid-cols-2 gap-5">
           {myTeams.length > 0 ? (
             myTeams.map((team) => <List key={team.teamID} team={team} />)
           ) : (

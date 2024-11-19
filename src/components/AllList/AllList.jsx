@@ -102,7 +102,7 @@ const AllList = ({ team }) => {
             </span>
           </div>
         </div>
-        <div className="p-3  grid grid-cols-1 gap-3">
+        <div className="px-3 py-2  grid grid-cols-1 gap-3">
           <div className="flex items-center gap-x-2">
             <TbCurrentLocation />
             <span className="font-medium text-sm">
@@ -117,6 +117,10 @@ const AllList = ({ team }) => {
           <div className="flex items-center gap-x-2">
             <PiCityLight />
             <span className="font-medium text-sm">{city}</span>
+          </div>
+          <div className="flex items-center gap-x-2">
+            <TbLocation />
+            <span className="font-medium text-sm">{address}</span>
           </div>
         </div>
         <div className="w-full p-3 bg-neutral-50 rounded-b-lg flex justify-end items-center gap-x-2">

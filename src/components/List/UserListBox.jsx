@@ -101,10 +101,7 @@ const UserListBox = ({ userL }) => {
           <TbWeight />
           <span className="font-medium text-sm">{weight}kg</span>
         </div>
-        <div className="flex items-center gap-x-2">
-          <TbWeight />
-          <span className="font-medium text-sm">{weight}kg</span>
-        </div>
+
         <div className="flex items-center gap-x-2">
           <TbLineHeight />
           <span className="font-medium text-sm">{height}cm</span>

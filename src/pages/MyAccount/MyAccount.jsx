@@ -22,7 +22,6 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import toast from "react-hot-toast";
 import PhotoModal from "~/components/UI/Modals/UpdateProfile/PhotoModal";
-import Loading from "~/components/Loading/Loading";
 
 const MyAccount = () => {
   const { user, status } = useSelector((store) => store.user);
@@ -40,13 +39,13 @@ const MyAccount = () => {
   useEffect(() => {
     if (user) {
       reset({
-        displayName: user.displayName || "Kullanıcı",
-        phoneNumber: user.phoneNumber || "+90 *** *** ** **",
-        email: user.email,
-        age: user.age || "Yaş Belirlenmemiş",
-        foot: user.foot || "Ayak Belirlenmemiş",
-        position: user.position || "Mevkii Belirlenmemiş",
-        city: user.city || "Şehir Belirlenmemiş",
+        displayName: user.displayName || "",
+        phoneNumber: user.phoneNumber || "",
+        email: user.email || "",
+        age: user.age || "",
+        foot: user.foot || "",
+        position: user.position || "",
+        city: user.city || "",
         weight: user.weight || "",
         height: user.height || "",
       });
@@ -81,17 +80,17 @@ const MyAccount = () => {
   const userInfo = [
     {
       label: "İsim Soyisim",
-      value: user.displayName || "Kullanıcı",
+      value: user.displayName,
       icon: <TbUser size={16} />,
       name: "displayName",
       type: "text",
     },
     {
       label: "Telefon Numarası",
-      value: user.phoneNumber || "+90 *** *** ** **",
+      value: user.phoneNumber,
       icon: <TbPhoneCall size={16} />,
       name: "phoneNumber",
-      type: "text",
+      type: "number",
     },
     {
       label: "E-posta",
@@ -103,14 +102,14 @@ const MyAccount = () => {
     },
     {
       label: "Yaş",
-      value: user.age || "Yaş Belirlenmemiş",
+      value: user.age,
       icon: <TbUserScan size={16} />,
       name: "age",
-      type: "text",
+      type: "number",
     },
     {
       label: "Ayak Tercihi",
-      value: user.foot || "Ayak Belirlenmemiş",
+      value: user.foot,
       icon: <TbShoe size={16} />,
       name: "foot",
       type: "select",
@@ -118,7 +117,7 @@ const MyAccount = () => {
     },
     {
       label: "Mevkii",
-      value: user.position || "Mevkii Belirlenmemiş",
+      value: user.position,
       icon: <TbCurrentLocation size={16} />,
       name: "position",
       type: "select",
@@ -133,7 +132,7 @@ const MyAccount = () => {
     },
     {
       label: "Şehir",
-      value: user.city || "Şehir Belirlenmemiş",
+      value: user.city,
       icon: <PiCityLight size={16} />,
       name: "city",
       type: "select",
@@ -155,6 +154,17 @@ const MyAccount = () => {
     },
   ];
 
+  const calculateCompletion = () => {
+    const completedFields = userInfo.filter((info) => info.value).length;
+    return {
+      completed: completedFields,
+      total: userInfo.length,
+      isComplete: completedFields === userInfo.length,
+    };
+  };
+
+  const { completed, total, isComplete } = calculateCompletion();
+
   return (
     <>
       {isPhotoModal && (
@@ -166,8 +176,8 @@ const MyAccount = () => {
           Profilim
         </h1>
         <div className="bg-white shadow-2xl container mx-auto rounded-xl p-12 flex flex-col gap-4">
-          <div className="flex flex-row gap-x-2 w-full">
-            <div className="relative">
+          <div className="flex flex-row gap-x-2 w-full  justify-between items-start">
+            <div className="relative flex gap-x-2">
               <img
                 src={user.photoURL ? user.photoURL : Avatar}
                 className="w-24 h-24 rounded-md shadow-xl object-cover"
@@ -179,12 +189,25 @@ const MyAccount = () => {
               >
                 <TbPhotoEdit />
               </button>
+              <div className="flex flex-col gap-x-1">
+                <h1 className="text-xl font-bold text-primary">
+                  {user.displayName || "Kullanıcı"}
+                </h1>
+                <p className="text-sm text-gray-500">{user.email}</p>
+              </div>
             </div>
-            <div className="flex flex-col gap-x-1">
-              <h1 className="text-xl font-bold text-primary">
-                {user.displayName || "Kullanıcı"}
-              </h1>
-              <p className="text-sm text-gray-500">{user.email}</p>
+            <div className="flex gap-x-2 text-red-600 text-xs">
+              {!isComplete && (
+                <div>
+                  Profilini tamamlaman için <strong>{total - completed}</strong>{" "}
+                  alanı daha doldurmalısın.
+                </div>
+              )}
+              {isComplete && (
+                <p className="text-green-600 bg-primary/10 px-4 py-1 rounded-full border border-primary/50 font-medium">
+                  Her şey düzgün görünüyor!
+                </p>
+              )}
             </div>
           </div>
           <form onSubmit={handleSubmit(handleEdit)}>
@@ -238,11 +261,13 @@ const MyAccount = () => {
                       </select>
                     ) : (
                       <input
-                        type="text"
+                        type={info.type}
                         defaultValue={info.value}
                         className="bg-transparent h-full w-full text-sm outline-none disabled:text-zinc-500"
+                        placeholder="Bilgi girilmedi"
                         {...register(info.name)}
                         disabled={!isEditMode || info.disabled}
+                        maxLength={info.name === "phoneNumber" && 10}
                       />
                     )}
                   </div>
