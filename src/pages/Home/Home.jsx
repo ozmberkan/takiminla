@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
+import Ball from "~/assets/soccerballwhite.svg";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
@@ -58,7 +59,15 @@ const Home = () => {
   }, [user]);
 
   return (
-    <div className="bg-mainBg bg-no-repeat bg-bottom bg-cover h-[850px] flex justify-center items-center relative overflow-hidden">
+    <div className="bg-mainBg bg-no-repeat bg-bottom bg-cover h-[850px] flex justify-center items-center relative overflow-hidden ">
+      <motion.div
+        initial={{ translateY: 100, opacity: 0 }}
+        animate={{ translateY: 0, opacity: 1 }}
+        className="absolute -bottom-16"
+      >
+        <img src={Ball} className="w-44 object-cover drop-shadow-4xl " />
+      </motion.div>
+
       <div className=" w-full flex items-center justify-center h-[400px] container mx-auto z-20">
         <div className=" w-full h-full py-12 flex flex-col justify-center items-center gap-3">
           <h1 className="text-[100px] font-black tracking-tighter text-primaryDark ">

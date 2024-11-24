@@ -12,6 +12,7 @@ import { db } from "~/firebase/firebase";
 const initialState = {
   myTeams: [],
   teams: [],
+  filteredTeams: [],
   status: "idle",
 };
 
@@ -36,6 +37,31 @@ export const getUsersTeams = createAsyncThunk(
   }
 );
 
+export const getFilteredTeams = createAsyncThunk(
+  "teams/getFilteredTeams",
+  async (filters) => {
+    const { position, city } = filters;
+
+    let teamsQuery = collection(db, "teams");
+
+    if (position) {
+      teamsQuery = query(teamsQuery, where("position", "==", position));
+    }
+
+    if (city) {
+      teamsQuery = query(teamsQuery, where("city", "==", city));
+    }
+
+    const querySnapshot = await getDocs(teamsQuery);
+    const teams = [];
+    querySnapshot.forEach((doc) => {
+      teams.push({ id: doc.id, ...doc.data() });
+    });
+
+    return teams;
+  }
+);
+
 export const getAllTeams = createAsyncThunk("teams/getAllTeams", async () => {
   try {
     const teamsRef = collection(db, "teams");
@@ -53,7 +79,16 @@ export const getAllTeams = createAsyncThunk("teams/getAllTeams", async () => {
 export const teamsSlice = createSlice({
   name: "teams",
   initialState,
-  reducers: {},
+  reducers: {
+    filterTeams: (state, action) => {
+      const { position, city } = action.payload;
+      state.filteredTeams = state.teams.filter((team) => {
+        const matchesPosition = position ? team.position === position : true;
+        const matchesCity = city ? team.city === city : true;
+        return matchesPosition && matchesCity;
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUsersTeams.pending, (state) => {
@@ -71,13 +106,23 @@ export const teamsSlice = createSlice({
       })
       .addCase(getAllTeams.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.teams = action.payload;
+        state.filteredTeams = action.payload;
       })
       .addCase(getAllTeams.rejected, (state, action) => {
+        state.status = "failed";
+      })
+      .addCase(getFilteredTeams.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getFilteredTeams.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.filteredTeams = action.payload;
+      })
+      .addCase(getFilteredTeams.rejected, (state, action) => {
         state.status = "failed";
       });
   },
 });
 
-export const {} = teamsSlice.actions;
+export const { filterTeams } = teamsSlice.actions;
 export default teamsSlice.reducer;

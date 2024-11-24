@@ -84,7 +84,7 @@ const AllList = ({ team }) => {
 
   return (
     <>
-      <div className="w-full rounded-lg shadow border flex flex-col  ">
+      <div className="w-full bg-white rounded-lg shadow border flex flex-col  ">
         <div className="w-full p-3  flex justify-between items-center">
           <div className="flex items-center justify-between gap-x-2 w-full  pb-2 border-b ">
             <div className="flex items-center gap-x-2">
